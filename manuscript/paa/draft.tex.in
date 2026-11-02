@@ -241,7 +241,7 @@ Anytime-ROCKET organizes MiniRocket computation into kernel--dilation prefixes a
 \subsection*{Data availability}
 The experiments use datasets from the UCR Time Series Archive \cite{ucr}. The dataset list, split sizes and seeds are recorded in the experiment manifest and the frozen aggregate results distributed with the code repository.
 \subsection*{Code availability}
-The implementation, frozen baseline protocol and result-verification scripts are available at \url{https://github.com/akwair/Anytime-ROCKET} (commit \texttt{0222693}).
+The implementation, frozen baseline protocol and result-verification scripts are available at \url{https://github.com/akwair/Anytime-ROCKET}.
 \subsection*{Use of AI-assisted tools}
 AI-assisted tools supported coding, analysis and manuscript preparation. The authors are responsible for the final code, results, references and text. \todo{Tool names and scope of use to be documented by the authors after independent verification.}
 
