@@ -239,7 +239,7 @@ Anytime-ROCKET organizes MiniRocket computation into kernel--dilation prefixes a
 \subsection*{Author contributions}
 \todo{Supply the author list, affiliations, corresponding-author email, and contributions.}
 \subsection*{Data availability}
-The experiments use datasets from the UCR Time Series Archive \cite{ucr}. The dataset list, split sizes and seeds are recorded in the experiment manifest and the frozen aggregate results distributed with the code repository.
+The experiments use the 113 univariate, equal-length datasets of the UCR Time Series Archive \cite{ucr}, publicly available at \url{https://www.timeseriesclassification.com/}. The dataset list together with per-dataset fit, calibration and test sizes, sequence lengths and class counts is recorded in \texttt{datasets.json}. Partitions are reproduced by merging the official train and test splits and permuting examples with seeds 0--4; the fit set retains the official training-set size, and the remaining examples are split equally into calibration and test sets. The frozen aggregate metrics used to build the manuscript tables are distributed with the code repository at \url{https://github.com/akwair/Anytime-ROCKET}.
 \subsection*{Code availability}
 The implementation, frozen baseline protocol and result-verification scripts are available at \url{https://github.com/akwair/Anytime-ROCKET}.
 \subsection*{Use of AI-assisted tools}
