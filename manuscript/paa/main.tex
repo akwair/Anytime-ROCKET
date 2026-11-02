@@ -177,17 +177,23 @@ At the 1\% CRC target, Anytime-ROCKET used 0.5569 of the full model's estimated 
 \centering\small
 \caption{Comparison at $\epsilon=1\%$. Each metric first averages five seeds within a dataset, then weights all 113 datasets equally. Cost is a structural operation proxy relative to the shared full model; disagreement (Dis.) is in percent and accuracy change ($\Delta$Acc.) in percentage points. LTT uses $\delta=0.1$. The two pruning baselines are standardized MiniRocket adaptations.}\label{tab:main}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrrrrrr}
-\toprule
-Method & CRC cost & Dis. & $\Delta$Acc. & LTT cost & Dis. & $\Delta$Acc. \\
-\midrule
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline\hline
+\textbf{Method} & \textbf{CRC cost} & \textbf{Dis.} & \textbf{$\Delta$Acc.} & \textbf{LTT cost} & \textbf{Dis.} & \textbf{$\Delta$Acc.} \\
+\hline
 Small MiniRocket & 0.8667 & 0.108 & -0.033 & 0.9350 & 0.042 & -0.012 \\
+\hline
 Natural prefix & 0.9222 & 0.063 & -0.036 & 0.9683 & 0.015 & -0.008 \\
+\hline
 SFD adaptation & 0.8001 & 0.180 & -0.026 & 0.8955 & 0.070 & -0.006 \\
+\hline
 POCKET adaptation & 0.8016 & 0.184 & -0.017 & 0.9018 & 0.067 & -0.005 \\
+\hline
 Stratified static & 0.8121 & 0.145 & -0.010 & 0.9097 & 0.057 & -0.013 \\
-Anytime-ROCKET & 0.5569 & 0.447 & -0.118 & 0.7504 & 0.191 & -0.050 \\
-\bottomrule
+\hline
+\textbf{Anytime-ROCKET} & \textbf{0.5569} & \textbf{0.447} & \textbf{-0.118} & \textbf{0.7504} & \textbf{0.191} & \textbf{-0.050} \\
+\hline
+\hline\hline
 \end{tabular}
 \end{table}
 
@@ -203,16 +209,21 @@ The cost reductions extended across datasets (Table~\ref{tab:paired}; Fig.~\ref{
 \centering\small
 \caption{Dataset-level modeled-cost comparisons at $\epsilon=1\%$. W/T/L counts datasets on which Anytime-ROCKET has lower/equal/higher mean cost than the comparator. Ties use absolute tolerance $10^{-12}$; each dataset contributes one five-seed mean.}\label{tab:paired}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrr}
-\toprule
-Comparator & CRC W/T/L & LTT W/T/L \\
-\midrule
+\begin{tabular}{|l|r|r|}
+\hline\hline
+\textbf{Comparator} & \textbf{CRC W/T/L} & \textbf{LTT W/T/L} \\
+\hline
 Small MiniRocket & 74/36/3 & 41/71/1 \\
+\hline
 Natural prefix & 75/36/2 & 41/71/1 \\
+\hline
 SFD adaptation & 76/36/1 & 41/71/1 \\
+\hline
 POCKET adaptation & 76/36/1 & 41/71/1 \\
+\hline
 Stratified static & 73/40/0 & 39/73/1 \\
-\bottomrule
+\hline
+\hline\hline
 \end{tabular}
 \end{table}
 
@@ -231,19 +242,27 @@ Larger disagreement targets reduced modeled computation (Table~\ref{tab:budget};
 \centering\small
 \caption{Risk-budget sensitivity of the stratified-importance margin policy. Cost is a structural operation proxy relative to the shared full model; accuracy change ($\Delta$Acc.) is in percentage points. Macro and pooled disagreement are percentages. Pooled values weight test-instance appearances across runs; repeated seeds reuse observations. The Active column counts runs selecting a finite exit threshold.}\label{tab:budget}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrrrrrr}
-\toprule
-Rule & $\epsilon$ (\%) & Cost & Macro dis. & Pooled dis. & $\Delta$Acc. & Active \\
-\midrule
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline\hline
+\textbf{Rule} & \textbf{$\epsilon$ (\%)} & \textbf{Cost} & \textbf{Macro dis.} & \textbf{Pooled dis.} & \textbf{$\Delta$Acc.} & \textbf{Active} \\
+\hline
 LTT & 0.5 & 0.8314 & 0.063 & 0.235 & -0.019 & 150/565 \\
+\hline
 LTT & 1 & 0.7504 & 0.191 & 0.550 & -0.050 & 209/565 \\
+\hline
 LTT & 2 & 0.5613 & 0.552 & 1.168 & -0.159 & 353/565 \\
+\hline
 LTT & 5 & 0.3039 & 2.076 & 3.110 & -0.666 & 487/565 \\
+\hline
 CRC & 0.5 & 0.7488 & 0.161 & 0.378 & -0.043 & 224/565 \\
+\hline
 CRC & 1 & 0.5569 & 0.447 & 0.788 & -0.118 & 375/565 \\
+\hline
 CRC & 2 & 0.3508 & 1.165 & 1.535 & -0.338 & 485/565 \\
+\hline
 CRC & 5 & 0.2013 & 3.172 & 3.649 & -1.049 & 539/565 \\
-\bottomrule
+\hline
+\hline\hline
 \end{tabular}
 \end{table}
 
@@ -256,15 +275,19 @@ Ordering changed the cost of calibrated exits (Table~\ref{tab:order}; Fig.~\ref{
 \centering\small
 \caption{Ordering ablation at $\epsilon=1\%$ with the margin rule. All 113 datasets and full-model fallbacks are included. Units match Table~\ref{tab:main}. Configuration selection followed exploratory benchmark evaluation.}\label{tab:order}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrrrrrr}
-\toprule
-Order & CRC cost & Dis. & $\Delta$Acc. & LTT cost & Dis. & $\Delta$Acc. \\
-\midrule
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline\hline
+\textbf{Order} & \textbf{CRC cost} & \textbf{Dis.} & \textbf{$\Delta$Acc.} & \textbf{LTT cost} & \textbf{Dis.} & \textbf{$\Delta$Acc.} \\
+\hline
 Importance & 0.6066 & 0.444 & -0.156 & 0.7897 & 0.178 & -0.059 \\
+\hline
 Random & 0.5704 & 0.487 & -0.200 & 0.7570 & 0.188 & -0.086 \\
+\hline
 Stratified random & 0.5613 & 0.482 & -0.199 & 0.7551 & 0.190 & -0.081 \\
+\hline
 Stratified importance & 0.5569 & 0.447 & -0.118 & 0.7504 & 0.191 & -0.050 \\
-\bottomrule
+\hline
+\hline\hline
 \end{tabular}
 \end{table}
 
@@ -283,17 +306,23 @@ Charging the full transform before feature selection largely removed the estimat
 \centering\small
 \caption{Two structural cost views at CRC $\epsilon=1\%$. Selective counts required transform work; full-transform charges all features before selection, as in the feature-masking implementation. Both include the applicable classifier costs.}\label{tab:execution}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrr}
-\toprule
-Method & Selective & Full-transform \\
-\midrule
+\begin{tabular}{|l|r|r|}
+\hline\hline
+\textbf{Method} & \textbf{Selective} & \textbf{Full-transform} \\
+\hline
 Small MiniRocket & 0.8667 & 0.8667 \\
+\hline
 Natural prefix & 0.9222 & 0.9987 \\
+\hline
 SFD adaptation & 0.8001 & 0.9944 \\
+\hline
 POCKET adaptation & 0.8016 & 0.9944 \\
+\hline
 Stratified static & 0.8121 & 0.9959 \\
-Anytime-ROCKET & 0.5569 & 0.9942 \\
-\bottomrule
+\hline
+\textbf{Anytime-ROCKET} & \textbf{0.5569} & \textbf{0.9942} \\
+\hline
+\hline\hline
 \end{tabular}
 \end{table}
 
@@ -335,15 +364,19 @@ Pooling produced more finite thresholds and lower modeled cost (Table~\ref{tab:c
 \centering\small
 \caption{Exploratory pooled cross-fitting at $\epsilon=1\%$. Datasets with fewer than 460 calibration examples use fold-derived losses; other results remain unchanged. Cost is a structural operation proxy relative to the shared full model; accuracy change ($\Delta$Acc.) is in percentage points. The Active column counts runs selecting a finite exit threshold. The pooled procedure is defined in Appendix~\ref{app:crossfit}.}\label{tab:crossfit}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{llrrrr}
-\toprule
-Selector & Calibration & Cost & Dis. (\%) & $\Delta$Acc. & Active \\
-\midrule
+\begin{tabular}{|l|l|r|r|r|r|}
+\hline\hline
+\textbf{Selector} & \textbf{Calibration} & \textbf{Cost} & \textbf{Dis. (\%)} & \textbf{$\Delta$Acc.} & \textbf{Active} \\
+\hline
 LTT & Independent split & 0.7504 & 0.191 & -0.050 & 209/565 \\
+\hline
 LTT & Pooled cross-fit heuristic & 0.5677 & 0.310 & -0.066 & 375/565 \\
+\hline
 CRC & Independent split & 0.5569 & 0.447 & -0.118 & 375/565 \\
+\hline
 CRC & Pooled cross-fit heuristic & 0.3934 & 0.593 & -0.117 & 498/565 \\
-\bottomrule
+\hline
+\hline\hline
 \end{tabular}
 \end{table}
 

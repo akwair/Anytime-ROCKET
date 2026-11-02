@@ -27,15 +27,21 @@ names = {
     'strat_imp_adaptive': 'Anytime-ROCKET',
 }
 
-def table(caption, label, columns, header, rows):
-    return '\n'.join([
+def table(caption, label, columns, header, rows, bold_rows=()):
+    cols = '|' + '|'.join(columns) + '|'
+    header_bold = r' & '.join(r'\textbf{' + c.strip() + r'}' for c in header.split('&'))
+    out = [
         r'\begin{table}[htbp]', r'\centering\small',
         r'\caption{' + caption + r'}\label{' + label + '}',
-        r'\setlength{\tabcolsep}{4pt}', r'\begin{tabular}{' + columns + '}',
-        r'\toprule', header + r' \\', r'\midrule',
-        *[' & '.join(row) + r' \\' for row in rows],
-        r'\bottomrule', r'\end{tabular}', r'\end{table}',
-    ])
+        r'\setlength{\tabcolsep}{4pt}', r'\begin{tabular}{' + cols + '}',
+        r'\hline\hline', header_bold + r' \\', r'\hline',
+    ]
+    for row in rows:
+        cells = [r'\textbf{' + c + r'}' for c in row] if row[0] in bold_rows else row
+        out.append(' & '.join(cells) + r' \\')
+        out.append(r'\hline')
+    out += [r'\hline\hline', r'\end{tabular}', r'\end{table}']
+    return '\n'.join(out)
 
 tables = {}
 rows = []
@@ -48,7 +54,8 @@ for key, name in names.items():
 tables['MAIN'] = table(
     r'Comparison at $\epsilon=1\%$. Each metric first averages five seeds within a dataset, then weights all 113 datasets equally. Cost is a structural operation proxy relative to the shared full model; disagreement (Dis.) is in percent and accuracy change ($\Delta$Acc.) in percentage points. LTT uses $\delta=0.1$. The two pruning baselines are standardized MiniRocket adaptations.',
     'tab:main', 'lrrrrrr',
-    r'Method & CRC cost & Dis. & $\Delta$Acc. & LTT cost & Dis. & $\Delta$Acc.', rows)
+    r'Method & CRC cost & Dis. & $\Delta$Acc. & LTT cost & Dis. & $\Delta$Acc.', rows,
+    bold_rows=('Anytime-ROCKET',))
 
 rows = []
 for key, name in list(names.items())[:-1]:
@@ -127,7 +134,8 @@ for key, name in names.items():
     rows.append([name, f"{r['cost']:.4f}", f"{r['full_transform_cost']:.4f}"])
 tables['EXECUTION'] = table(
     r'Two structural cost views at CRC $\epsilon=1\%$. Selective counts required transform work; full-transform charges all features before selection, as in the feature-masking implementation. Both include the applicable classifier costs.',
-    'tab:execution', 'lrr', 'Method & Selective & Full-transform', rows)
+    'tab:execution', 'lrr', 'Method & Selective & Full-transform', rows,
+    bold_rows=('Anytime-ROCKET',))
 
 dataset_manifest = [dict(dataset=n, seeds=list(range(5)), n_fit=rs[0]['n_fit'],
                          n_cal=rs[0]['n_cal'], n_test=rs[0]['n_test'],
