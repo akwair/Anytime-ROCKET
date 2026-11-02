@@ -1,0 +1,44 @@
+{
+  "stage": "pdf",
+  "checks": {
+    "equations_unchanged": true,
+    "table_cells_unchanged": true,
+    "citation_set_unchanged": true,
+    "bibliography_unchanged": true,
+    "table_generator_logic_unchanged": true,
+    "figure_assets_unchanged": true,
+    "evidence_unchanged": true,
+    "four_figures_six_tables": true,
+    "table_markers_resolved": true,
+    "balanced_braces": true,
+    "figure_files_exist": true,
+    "author_declarations_untouched": true,
+    "no_overfull_boxes": true,
+    "no_unresolved_references": true,
+    "no_replacement_glyphs": true
+  },
+  "draft_sha256": "432882aaeacf8ee8e05ce29b76a92347a368c6692df972fa089426b6668ffa18",
+  "build_evidence_sha256": "c4d40a933b08176fbfdf7cd84fe83b3841f220735f59310a365d1325cb26d140",
+  "main_tex_sha256": "7c5f27bdefbd1a44cd8c7a809076e266e2f89b38db7b8c6ff6c9bb79c0103747",
+  "equations": 10,
+  "tables": 6,
+  "figures": 4,
+  "references": 13,
+  "short_pages_to_inspect": [],
+  "pages": 17,
+  "pdf_sha256": "95d2e0e2ef6b30a34a04c967f4ef88bd4a7469551bce94f7f12c0187bd25f362",
+  "visual_review": "Passed: all 17 rendered pages inspected. Figure/table labels remain readable; no clipping, overlapping elements, missing glyphs or blank pages.",
+  "passed": true,
+  "figure_pages": {
+    "1": 4,
+    "2": 10,
+    "3": 11,
+    "4": 12
+  },
+  "style_review": {
+    "round": 2,
+    "verdict": "pass",
+    "unresolved_must_fix": 0,
+    "unresolved_minor": 0
+  }
+}

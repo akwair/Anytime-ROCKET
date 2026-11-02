@@ -1,0 +1,308 @@
+# Detach-ROCKET
+
+<img align="right" src="logo/detach_logo.png" alt="Logo" width="150"/>
+
+![Python](https://img.shields.io/badge/Python-%E2%89%A53.11-blue)
+![License](https://img.shields.io/badge/License-BSD--3--Clause-green)
+![Install](https://img.shields.io/badge/install-from%20GitHub-orange)
+
+Official repository for:
+
+- [Detach-ROCKET: Sequential feature selection for time series classification with random convolutional kernels](https://link.springer.com/article/10.1007/s10618-024-01062-7)
+- [Classification of raw MEG/EEG data with detach-rocket ensemble: an improved rocket algorithm for multivariate time series analysis](https://www.arxiv.org/abs/2408.02760)
+
+## Why Detach-ROCKET?
+
+ROCKET models generate thousands of random convolutional features, but most are redundant. Detach-ROCKET automatically prunes them — keeping only the features that matter. The result: **equal or better accuracy, faster inference, and a fraction of the model size.**
+
+| | Full ROCKET | Detach-ROCKET |
+|---|---|---|
+| Test Accuracy | 80.49% | **82.10%** |
+| Features Retained | 100% | **2.36%** |
+| Inference Time | 21.96s | **1.01s (22x faster)** |
+
+*FordB dataset (UCR archive) — 10,000 kernels. See the [full example notebook](examples/Detach_ROCKET_example_UCR.ipynb).*
+
+## Overview
+
+Detach-ROCKET applies **Sequential Feature Detachment (SFD)** to ROCKET-family models for time-series classification. It iteratively removes the least important features, selects the optimal model size, and physically rebuilds a smaller, faster transformer. The API follows scikit-learn conventions — just `fit`, `predict`, and `score`.
+
+The library provides four main classes:
+
+- **`DetachRocket`** — End-to-end model: wraps any ROCKET-family transformer (Rocket, MiniRocket, MultiRocket), prunes it with SFD, and rebuilds a smaller transformer for fast inference. [aeon](https://www.aeon-toolkit.org/) ROCKET-family transformers are supported out of the box (aeon is a base dependency). Physical kernel rebuilding is currently implemented for aeon's `Rocket` and the CuPy MiniRocket backend; other transformers use an exact feature-masking fallback (identical predictions, without the inference speedup).
+
+- **`DetachEnsemble`** — Ensemble of independently randomized Detach-MiniRocket or Detach-MultiRocket models (`model_type="minirocket"` or `"multirocket"`). Designed for multivariate time series, especially high-dimensional data (e.g. MEG/EEG). Provides class probability estimation and channel relevance scores. Both member types run on `backend="aeon"` by default (multithreaded numba, CPU, no extra dependency); for GPU MiniRocket choose `backend="pytorch"` (CPU/CUDA) or `backend="cuda"` (CuPy).
+
+- **`DetachMatrix`** — Applies SFD to any precomputed feature matrix. Use this when your features come from an external pipeline (tsfresh, catch22, or any other transformer).
+
+- **`PrunedRocketModel`** — Lightweight inference-only model returned by `DetachRocket.detach()`. Contains only the pruned transformer, scaler, and classifier — the minimum needed for deployment.
+
+For a detailed explanation of the methods please refer to the [Detach-ROCKET article](https://link.springer.com/article/10.1007/s10618-024-01062-7) and the [Detach-ROCKET Ensemble article](https://www.arxiv.org/abs/2408.02760).
+
+## Features
+
+- Multiclass classification support
+- Built-in PyTorch MiniRocket implementation (CPU and GPU)
+- CuPy/CUDA MiniRocket backend for maximum GPU throughput
+- Detach-ROCKET Ensemble for high-dimensional multivariate time series, with MiniRocket or MultiRocket members
+- aeon-backed ensemble members (the default backend): multithreaded numba on CPU — the fastest CPU path for both MiniRocket and MultiRocket, with no extra dependency (GPU backends remain MiniRocket-only for now)
+- Channel relevance estimation and label probability for multivariate data
+- Physical kernel pruning for faster inference via `model.detach()`
+- Works with [aeon](https://www.aeon-toolkit.org/)'s ROCKET-family transformers out of the box, and with any object exposing `transform(X)` (scikit-learn transformers included) through an exact feature-masking fallback
+
+## Installation
+
+Install directly from GitHub:
+
+```bash
+pip install git+https://github.com/gon-uri/detach_rocket
+```
+
+The base install pulls in [aeon](https://www.aeon-toolkit.org/), which provides both the ROCKET-family transformers and the UCR/UEA dataset loaders — no extra is needed for either, and `DetachEnsemble` runs out of the box on its default aeon backend. Requires Python ≥3.11 and NumPy ≥2.
+
+With optional dependencies:
+
+```bash
+# DetachEnsemble with PyTorch backend (CPU or CUDA)
+pip install "detach_rocket[torch] @ git+https://github.com/gon-uri/detach_rocket"
+
+# DetachEnsemble with CuPy/CUDA backend (requires CUDA GPU)
+pip install "detach_rocket[cuda] @ git+https://github.com/gon-uri/detach_rocket"
+
+# Dependencies for running the example notebooks
+pip install "detach_rocket[examples] @ git+https://github.com/gon-uri/detach_rocket"
+
+# Everything
+pip install "detach_rocket[all] @ git+https://github.com/gon-uri/detach_rocket"
+```
+
+Available extras: `torch`, `cuda`, `examples`, `dev`, `all`.
+
+> **Note:** The `cuda` extra installs `cupy-cuda12x`. If your system uses a different CUDA version, see the [CuPy installation guide](https://docs.cupy.dev/en/stable/install.html).
+
+For development:
+
+```bash
+git clone https://github.com/gon-uri/detach_rocket.git
+cd detach_rocket
+pip install -e ".[dev]"
+```
+
+## Quick Start — DetachRocket
+
+The model follows the scikit-learn API: `fit`, `predict`, `score`.
+
+aeon ships the UCR/UEA archive loaders, so no extra download helper is needed to get data:
+
+```python
+from aeon.datasets import load_classification
+
+X_train, y_train = load_classification("FordB", split="train")
+X_test, y_test = load_classification("FordB", split="test")
+```
+
+Datasets are downloaded from [timeseriesclassification.com](https://timeseriesclassification.com) on first use and cached locally. `load_classification` returns `(X, y)` per split, with `X` already in the 3D form and `y` an array of string labels.
+
+```python
+from detach_rocket import DetachRocket
+from aeon.transformations.collection.convolution_based import Rocket
+
+# Instantiate model
+rocket = Rocket(n_kernels=10_000)
+detach_model = DetachRocket(transformer=rocket, trade_off=0.1)
+
+# Train (validation set required when set_percentage=None)
+detach_model.fit(X_train, y_train, X_val=X_val, y_val=y_val)
+
+# Evaluate
+y_pred = detach_model.predict(X_test)
+test_acc = detach_model.score(X_test, y_test)
+full_model_acc = detach_model.score_full(X_test, y_test)  # Unpruned baseline
+summary = detach_model.get_summary()
+
+# Export lightweight model for deployment
+pruned_model = detach_model.detach()
+y_pred = pruned_model.predict(X_new)
+```
+
+If you prefer a fixed pruning level, pass `set_percentage` and fit without a validation set:
+
+```python
+detach_model = DetachRocket(transformer=rocket, set_percentage=50)
+detach_model.fit(X_train, y_train)
+```
+
+**Input shapes:**
+- Univariate: `(n_instances, 1, n_timepoints)`. Plain 2D `(n_instances, n_timepoints)` also works — aeon's collection transformers treat it as a single-channel collection and reshape it internally, giving identical results
+- Multivariate: `(n_instances, n_channels, n_timepoints)`
+- `DetachEnsemble` also accepts 2D univariate input: it reshapes it to a single channel and warns, since the ensemble is designed primarily for multivariate data (with one channel, member diversity comes only from bias sampling, but the ensemble still provides label probabilities)
+
+## Quick Start — DetachEnsemble
+
+Ensemble of Detach-MiniRocket (default) or Detach-MultiRocket models for multivariate time series. Provides class probability and channel relevance estimation. By default the members run on aeon's numba implementation (`backend="aeon"`, all CPU cores) — the fastest CPU path, included in the base install:
+
+```python
+from detach_rocket import DetachEnsemble
+
+# Create ensemble (aeon MiniRocket members, all CPU cores)
+ensemble = DetachEnsemble(
+    num_models=20,
+    num_kernels=5_000,
+)
+
+# Train and predict
+ensemble.fit(X_train, y_train)
+y_pred = ensemble.predict(X_test)
+
+# Class probabilities (soft voting weighted by training accuracy)
+probs = ensemble.predict_proba(X_test, proba="soft")
+
+# Channel relevance estimation
+channel_relevance = ensemble.estimate_channel_relevance()
+```
+
+MultiRocket members use the same aeon implementation (CPU only — the GPU backends remain MiniRocket-only for now):
+
+```python
+ensemble = DetachEnsemble(num_models=20, num_kernels=5_000, model_type="multirocket")
+```
+
+On a CUDA GPU, select a GPU MiniRocket backend explicitly: `backend="pytorch"` (needs the `torch` extra) or `backend="cuda"` (CuPy, needs the `cuda` extra). Note that on CPU the PyTorch backend is restricted to `n_jobs` torch threads (1 by default, to avoid OpenMP deadlocks on stacks with conflicting OpenMP runtimes):
+
+```python
+ensemble = DetachEnsemble(num_models=20, num_kernels=5_000, backend="pytorch")
+```
+
+> **`num_kernels` counts features, not kernels** (a historical name). For both model types it is the per-member *feature budget*: with MiniRocket, `num_kernels=10_000` → 9,996 features; with MultiRocket — which produces 8 features per kernel-position (4 pooling operators × {raw series, first-order difference}) — `num_kernels // 8` is passed to aeon as `n_kernels`, so `num_kernels=10_000` → 9,408 features. Switching `model_type` therefore keeps the per-member cost comparable. To match the MultiRocket paper's default scale (6,250 kernels ≈ 50k features), use `num_kernels=50_000`.
+
+<p align="center">
+  <img src="logo/channel_relevance.png" alt="Channel relevance estimation example" width="600"/>
+</p>
+
+## Quick Start — DetachMatrix
+
+Apply SFD to any precomputed feature matrix — works with tsfresh, catch22, or any feature extraction pipeline.
+
+```python
+from detach_rocket import DetachMatrix
+
+# X_features: (n_instances, n_features) — any feature matrix
+model = DetachMatrix(trade_off=0.1)
+model.fit(X_features, y, X_val=X_features_val, y_val=y_val)
+
+y_pred = model.predict(X_features_test)
+test_acc = model.score(X_features_test, y_test)
+```
+
+## Notebook Examples
+
+Detailed usage examples are available in the [examples folder](examples/):
+
+- **[Detach-ROCKET (UCR)](examples/Detach_ROCKET_example_UCR.ipynb)** — Univariate classification with Rocket on the FordB dataset. Includes SFD curve visualization, accuracy and inference time comparison.
+- **[Detach-ROCKET Ensemble (UEA)](examples/Detach_Ensemble_example_UEA.ipynb)** — Multivariate classification on an EEG dataset (SelfRegulationSCP1). Demonstrates channel relevance estimation.
+- **[SFD with tsfresh](examples/SFD_example_tsfresh.ipynb)** — Feature selection on tsfresh features using `DetachMatrix`, showing that SFD works with any feature pipeline.
+
+## Core Modules
+
+- `detach_rocket/detach_classes.py`: Main model classes (`DetachRocket`, `DetachMatrix`, `DetachEnsemble`, `PrunedRocketModel`).
+- `detach_rocket/sfd.py`: Sequential Feature Detachment core logic (`feature_detachment`).
+- `detach_rocket/model_selection.py`: Model-size selection and final retraining utilities.
+- `detach_rocket/pruner.py`: Transformer pruning — `AeonRocketTransformerPruner` physically rebuilds aeon's `Rocket`, `CudaMiniRocketTransformerPruner` does the same for the CuPy MiniRocket backend, and `GenericTransformerPruner` provides the exact feature-masking fallback for every other transformer.
+- `detach_rocket/pytorch_minirocket.py`: PyTorch MiniRocket implementation (CPU/GPU).
+- `detach_rocket/cuda_minirocket.py`: CuPy/CUDA MiniRocket implementation.
+- `detach_rocket/aeon_minirocket.py` and `detach_rocket/aeon_multirocket.py`: aeon MiniRocket/MultiRocket subclasses with the per-feature kernel map (`get_kernel_features`) that powers ensemble channel relevance.
+
+## Migrating from 0.0.x
+
+Version 0.2.0 is a full rework of the library, with a cleaner scikit-learn-style API built on [aeon](https://www.aeon-toolkit.org/). The main changes relative to the original 0.0.x releases:
+
+| 0.0.x | 0.2.0 |
+|---|---|
+| `DetachRocket(model_type="rocket", num_kernels=10000)` | `DetachRocket(transformer=Rocket(n_kernels=10_000))` — construct the transformer yourself with `from aeon.transformations.collection.convolution_based import Rocket`, or pass any object with `transform(X)` |
+| `fit(X, y)` with a silent internal train/val split | Explicit `fit(X, y, X_val=..., y_val=...)`, or `set_percentage=...` to skip validation |
+| `score(X, y)` returned a `(pruned_acc, full_acc)` tuple | `score(X, y)` returns a float; the unpruned baseline is `score_full(X, y)` |
+| Private attributes (`_feature_matrix`, `_classifier`, ...) | scikit-learn style public attributes (`feature_matrix_`, `classifier_`, ...) |
+| `multilabel_type` | `multiclass_type` (renamed; default remains `"max"`, as in the paper) |
+| `utils.py` (`feature_detachment`, `select_optimal_model` with built-in plotting) | `sfd.py` (`feature_detachment`) and `model_selection.py` (`select_optimal_pruning`, plotting moved to the notebooks) |
+| `utils_datasets.fetch_ucr_dataset(...)` returned both splits in one `Bunch`, univariate `X` as 2D | `from aeon.datasets import load_classification`; `load_classification("FordB", split="train")` returns `(X, y)` per split, univariate `X` as 3D `(n_instances, 1, n_timepoints)` — both shapes are accepted as model input |
+| Python ≥3.7 | Python ≥3.11, NumPy ≥2 (both required by aeon) |
+
+New since 0.0.x: `DetachEnsemble` with PyTorch and CuPy/CUDA MiniRocket backends, physical transformer pruning with `detach()` for lightweight deployment models, channel relevance estimation, label probabilities via weighted soft voting, and `random_state` for reproducibility.
+
+Added in 0.2.1: `DetachEnsemble` supports MultiRocket members (`model_type="multirocket"`) and gains an aeon/numba backend — multithreaded on CPU and available with the base install (no torch needed) — which is now the default for both model types. GPU users select `backend="pytorch"` or `backend="cuda"` explicitly (in 0.2.0 the default was `backend="pytorch"`).
+
+Transformers you supply yourself keep working regardless of their origin: sktime transformers, scikit-learn transformers, and anything else exposing `transform(X)` still fit and predict correctly through the feature-masking fallback. They simply do not get a physically rebuilt transformer, so `detach()` gives identical predictions without the inference speedup.
+
+> **Intel Mac / x86_64 users needing the `[torch]` extra:** the newest macOS x86_64 torch wheel requires NumPy 1, which conflicts with the NumPy ≥2 floor aeon imposes. A compatibility build with the same API is available for that platform:
+>
+> ```bash
+> pip install "detach_rocket[torch] @ git+https://github.com/gon-uri/detach_rocket@v0.1.0"
+> ```
+
+Two behavior fixes worth knowing: 0.0.x retrained the final classifier on the feature set of the step *before* the selected one (an off-by-one in the mask reconstruction) and fitted the scaler before the internal train/val split; the rework retrains exactly the selected feature set and keeps validation data out of the scaler fit.
+
+## Troubleshooting
+
+**`llvmlite` fails to build during `pip install`.** `numba` (pulled in by aeon, which compiles the ROCKET kernels with it) stopped publishing macOS x86_64 wheels partway through the version range aeon accepts. On Intel Macs — and on x86_64/Rosetta condas running on Apple Silicon — pip therefore picks a `numba`/`llvmlite` pair that exists only as a source archive and tries to compile LLVM from scratch. Tell pip to prefer versions that ship a wheel over newer source-only releases:
+
+```bash
+pip install --prefer-binary git+https://github.com/gon-uri/detach_rocket
+```
+
+This resolves to the newest `numba` that still has an x86_64 macOS wheel, which is inside aeon's supported range, so nothing else is affected. Platforms with wheels for the newest `numba` (Linux, Windows, Apple Silicon) resolve identically with or without the flag.
+
+Alternatively, install `numba` from conda first and then install the package:
+
+```bash
+conda install "numba>=0.58,<0.64"
+pip install git+https://github.com/gon-uri/detach_rocket
+```
+
+**`[torch]` extra on Intel Mac / x86_64 Rosetta conda.** The newest macOS x86_64 torch wheel requires `numpy<2`, which cannot coexist with the NumPy ≥2 floor that aeon imposes on this version. A compatibility build with the same API, supporting NumPy 1 on that platform, is available:
+
+```bash
+pip install "detach_rocket[torch] @ git+https://github.com/gon-uri/detach_rocket@v0.1.0"
+```
+
+**`Intel MKL WARNING` about SSE4.2/AVX** (conda installs MKL by default):
+
+```bash
+conda install nomkl
+```
+
+## License
+
+This project is licensed under the BSD-3-Clause License.
+
+## Citation
+
+If you find these methods useful in your research, please cite the following articles:
+
+*APA*
+```
+Uribarri, G., Barone, F., Ansuini, A., & Fransén, E. (2024). Detach-ROCKET: Sequential feature selection for time series classification with random convolutional kernels. Data Mining and Knowledge Discovery, 1-26.
+
+Solana, A., Fransén, E., & Uribarri, G. (2024). Classification of raw MEG/EEG data with detach-rocket ensemble: an improved rocket algorithm for multivariate time series analysis. arXiv preprint arXiv:2408.02760.
+```
+
+*BIBTEX*
+```bibtex
+@article{uribarri2024detach,
+  title={Detach-ROCKET: Sequential feature selection for time series classification with random convolutional kernels},
+  author={Uribarri, Gonzalo and Barone, Federico and Ansuini, Alessio and Frans{\'e}n, Erik},
+  journal={Data Mining and Knowledge Discovery},
+  pages={1--26},
+  year={2024},
+  publisher={Springer}
+}
+
+@article{solana2024classification,
+  title={Classification of raw MEG/EEG data with detach-rocket ensemble: an improved rocket algorithm for multivariate time series analysis},
+  author={Solana, Adri{\`a} and Frans{\'e}n, Erik and Uribarri, Gonzalo},
+  journal={arXiv preprint arXiv:2408.02760},
+  year={2024}
+}
+```
+
+<img src="logo/detach_logo.png" align="centered"
+     alt="repo logo" width="80" height="80">

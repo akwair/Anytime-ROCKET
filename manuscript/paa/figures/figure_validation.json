@@ -1,0 +1,43 @@
+{
+  "backend": "Python/matplotlib",
+  "n_datasets": 113,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "source_summary_sha256": "dadba62c338db0b4efe363e827ace38b6d61d051ce6582d0bddf70bc6a544bcc",
+  "figures": [
+    {
+      "name": "fig1_overview",
+      "width_inches": 7.2,
+      "height_inches": 5.0,
+      "dpi": 600
+    },
+    {
+      "name": "fig2_main",
+      "width_inches": 7.2,
+      "height_inches": 3.45,
+      "dpi": 600
+    },
+    {
+      "name": "fig3_paired",
+      "width_inches": 7.2,
+      "height_inches": 3.65,
+      "dpi": 600
+    },
+    {
+      "name": "fig4_sensitivity",
+      "width_inches": 7.2,
+      "height_inches": 3.45,
+      "dpi": 600
+    }
+  ],
+  "statistics": "Dataset means or equal-weight macro means; no intervals or new tests.",
+  "integrity": "No generated observations, jitter, removed outliers or raster image manipulation.",
+  "visual_review": "Passed: all four Python previews inspected; text/arrows corrected in the method schematic and verified after PDF embedding.",
+  "paired_reconstruction": "All 565 raw runs, 113 dataset means, macro means and W/T/L counts matched the frozen summary to 1e-12.",
+  "pdf_text_extractable": true
+}

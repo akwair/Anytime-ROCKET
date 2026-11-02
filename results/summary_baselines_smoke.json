@@ -1,0 +1,581 @@
+{
+  "protocol_hash": "8b5e3bf0cfeb6441673a44ba812d55332fee2bf53db74e7b18a8fb92b7306404",
+  "n_runs": 1,
+  "n_datasets": 1,
+  "expected_datasets": 113,
+  "expected_runs": 565,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "datasets_with_all_seeds": 0,
+  "incomplete_datasets": {
+    "Coffee": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "scope": "same v2 split, exact split calibration, standardized baseline adaptations",
+  "cost_warning": "both costs are modeled operation proxies, not measured speedups; full_transform_cost models full transform plus heads",
+  "tables": {
+    "ltt_0.005": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "ltt_0.01": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "ltt_0.02": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "ltt_0.05": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "crc_0.005": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "crc_0.01": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "crc_0.02": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    },
+    "crc_0.05": {
+      "small_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "ridge_prefix": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "detach_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "pocket_minirocket": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_static": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      },
+      "strat_imp_adaptive": {
+        "cost": 1.0,
+        "full_transform_cost": 1.0,
+        "acc": 1.0,
+        "disagree": 0.0,
+        "certified_runs": 0,
+        "cheaper_selected_runs": 0,
+        "known_safe_full_fallbacks": 1,
+        "pooled_test_disagreement": 0.0,
+        "delta_acc_pp": 0.0
+      }
+    }
+  },
+  "paired_complete_datasets": {
+    "ltt_0.005": {},
+    "ltt_0.01": {},
+    "ltt_0.02": {},
+    "ltt_0.05": {},
+    "crc_0.005": {},
+    "crc_0.01": {},
+    "crc_0.02": {},
+    "crc_0.05": {}
+  }
+}

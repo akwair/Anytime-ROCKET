@@ -1,0 +1,75 @@
+113 datasets with complete v3 runs
+strat_imp ltt eps=0.005 margin  v2 W/T/L=29/84/0 cert=30 geo=1.33 cost=0.831 viol=15/565 meandis=0.06% dAcc=-0.02pp
+strat_imp ltt eps=0.005 margin  v3 W/T/L=62/51/0 cert=63 geo=1.56 cost=0.722 viol=42/565 meandis=0.12% dAcc=-0.01pp
+strat_imp ltt eps=0.005 consist v2 W/T/L=29/83/1 cert=30 geo=1.39 cost=0.818 viol=13/565 meandis=0.06% dAcc=-0.01pp
+strat_imp ltt eps=0.005 consist v3 W/T/L=62/50/1 cert=63 geo=1.71 cost=0.691 viol=37/565 meandis=0.10% dAcc=-0.00pp
+strat_imp ltt eps=0.01 margin  v2 W/T/L=39/73/1 cert=42 geo=1.45 cost=0.750 viol=25/565 meandis=0.19% dAcc=-0.05pp
+strat_imp ltt eps=0.01 margin  v3 W/T/L=72/40/1 cert=75 geo=1.96 cost=0.568 viol=47/565 meandis=0.31% dAcc=-0.07pp
+strat_imp ltt eps=0.01 consist v2 W/T/L=40/71/2 cert=42 geo=1.52 cost=0.735 viol=16/565 meandis=0.17% dAcc=-0.02pp
+strat_imp ltt eps=0.01 consist v3 W/T/L=72/37/4 cert=76 geo=2.06 cost=0.544 viol=41/565 meandis=0.28% dAcc=-0.04pp
+strat_imp ltt eps=0.02 margin  v2 W/T/L=66/47/0 cert=71 geo=1.71 cost=0.561 viol=22/565 meandis=0.55% dAcc=-0.16pp
+strat_imp ltt eps=0.02 margin  v3 W/T/L=88/25/0 cert=94 geo=2.14 cost=0.417 viol=48/565 meandis=0.79% dAcc=-0.17pp
+strat_imp ltt eps=0.02 consist v2 W/T/L=62/41/10 cert=72 geo=1.74 cost=0.543 viol=24/565 meandis=0.51% dAcc=-0.10pp
+strat_imp ltt eps=0.02 consist v3 W/T/L=82/20/11 cert=94 geo=2.19 cost=0.388 viol=51/565 meandis=0.78% dAcc=-0.12pp
+strat_imp ltt eps=0.05 margin  v2 W/T/L=85/28/0 cert=98 geo=1.96 cost=0.304 viol=34/565 meandis=2.08% dAcc=-0.67pp
+strat_imp ltt eps=0.05 margin  v3 W/T/L=93/20/0 cert=110 geo=2.09 cost=0.201 viol=55/565 meandis=2.61% dAcc=-0.78pp
+strat_imp ltt eps=0.05 consist v2 W/T/L=79/15/19 cert=98 geo=1.86 cost=0.290 viol=23/565 meandis=1.85% dAcc=-0.44pp
+strat_imp ltt eps=0.05 consist v3 W/T/L=86/3/24 cert=110 geo=1.96 cost=0.184 viol=52/565 meandis=2.45% dAcc=-0.58pp
+strat_imp crc eps=0.005 margin  v2 W/T/L=43/69/1 cert=45 geo=1.52 cost=0.749 viol=67/565 meandis=0.16% dAcc=-0.04pp
+strat_imp crc eps=0.005 margin  v3 W/T/L=79/33/1 cert=80 geo=1.99 cost=0.580 viol=115/565 meandis=0.24% dAcc=-0.04pp
+strat_imp crc eps=0.005 consist v2 W/T/L=44/68/1 cert=45 geo=1.60 cost=0.732 viol=54/565 meandis=0.14% dAcc=-0.01pp
+strat_imp crc eps=0.005 consist v3 W/T/L=79/31/3 cert=81 geo=2.15 cost=0.548 viol=95/565 meandis=0.22% dAcc=-0.02pp
+strat_imp crc eps=0.01 margin  v2 W/T/L=73/40/0 cert=76 geo=1.89 cost=0.557 viol=100/565 meandis=0.45% dAcc=-0.12pp
+strat_imp crc eps=0.01 margin  v3 W/T/L=97/16/0 cert=101 geo=2.45 cost=0.393 viol=134/565 meandis=0.59% dAcc=-0.12pp
+strat_imp crc eps=0.01 consist v2 W/T/L=72/36/5 cert=77 geo=1.96 cost=0.534 viol=83/565 meandis=0.41% dAcc=-0.07pp
+strat_imp crc eps=0.01 consist v3 W/T/L=94/12/7 cert=101 geo=2.59 cost=0.359 viol=123/565 meandis=0.57% dAcc=-0.11pp
+strat_imp crc eps=0.02 margin  v2 W/T/L=91/22/0 cert=98 geo=2.23 cost=0.351 viol=127/565 meandis=1.17% dAcc=-0.34pp
+strat_imp crc eps=0.02 margin  v3 W/T/L=100/13/0 cert=107 geo=2.52 cost=0.280 viol=152/565 meandis=1.36% dAcc=-0.39pp
+strat_imp crc eps=0.02 consist v2 W/T/L=84/15/14 cert=98 geo=2.23 cost=0.328 viol=113/565 meandis=1.10% dAcc=-0.24pp
+strat_imp crc eps=0.02 consist v3 W/T/L=93/6/14 cert=107 geo=2.51 cost=0.252 viol=141/565 meandis=1.31% dAcc=-0.26pp
+strat_imp crc eps=0.05 margin  v2 W/T/L=86/24/3 cert=108 geo=1.96 cost=0.201 viol=120/565 meandis=3.17% dAcc=-1.05pp
+strat_imp crc eps=0.05 margin  v3 W/T/L=92/20/1 cert=113 geo=2.18 cost=0.142 viol=141/565 meandis=3.47% dAcc=-1.09pp
+strat_imp crc eps=0.05 consist v2 W/T/L=81/6/26 cert=108 geo=1.84 cost=0.184 viol=107/565 meandis=2.92% dAcc=-0.72pp
+strat_imp crc eps=0.05 consist v3 W/T/L=86/0/27 cert=113 geo=1.97 cost=0.131 viol=132/565 meandis=3.23% dAcc=-0.76pp
+random    ltt eps=0.005 margin  v2 W/T/L=29/83/1 cert=30 geo=1.30 cost=0.839 viol=12/565 meandis=0.06% dAcc=-0.03pp
+random    ltt eps=0.005 margin  v3 W/T/L=61/50/2 cert=63 geo=1.54 cost=0.726 viol=46/565 meandis=0.12% dAcc=-0.04pp
+random    ltt eps=0.005 consist v2 W/T/L=28/83/2 cert=30 geo=1.35 cost=0.826 viol=15/565 meandis=0.06% dAcc=-0.03pp
+random    ltt eps=0.005 consist v3 W/T/L=61/50/2 cert=63 geo=1.65 cost=0.698 viol=49/565 meandis=0.12% dAcc=-0.03pp
+random    ltt eps=0.01 margin  v2 W/T/L=42/71/0 cert=42 geo=1.46 cost=0.757 viol=19/565 meandis=0.19% dAcc=-0.09pp
+random    ltt eps=0.01 margin  v3 W/T/L=75/38/0 cert=76 geo=1.93 cost=0.577 viol=64/565 meandis=0.34% dAcc=-0.10pp
+random    ltt eps=0.01 consist v2 W/T/L=40/72/1 cert=42 geo=1.50 cost=0.743 viol=21/565 meandis=0.18% dAcc=-0.07pp
+random    ltt eps=0.01 consist v3 W/T/L=72/38/3 cert=76 geo=2.03 cost=0.550 viol=62/565 meandis=0.34% dAcc=-0.07pp
+random    ltt eps=0.02 margin  v2 W/T/L=66/46/1 cert=72 geo=1.68 cost=0.579 viol=30/565 meandis=0.59% dAcc=-0.27pp
+random    ltt eps=0.02 margin  v3 W/T/L=87/24/2 cert=94 geo=2.13 cost=0.421 viol=57/565 meandis=0.88% dAcc=-0.32pp
+random    ltt eps=0.02 consist v2 W/T/L=65/41/7 cert=72 geo=1.75 cost=0.552 viol=28/565 meandis=0.57% dAcc=-0.21pp
+random    ltt eps=0.02 consist v3 W/T/L=86/19/8 cert=94 geo=2.32 cost=0.387 viol=57/565 meandis=0.88% dAcc=-0.23pp
+random    ltt eps=0.05 margin  v2 W/T/L=83/26/4 cert=98 geo=2.00 cost=0.305 viol=43/565 meandis=2.19% dAcc=-0.95pp
+random    ltt eps=0.05 margin  v3 W/T/L=93/16/4 cert=110 geo=2.10 cost=0.202 viol=76/565 meandis=2.86% dAcc=-1.23pp
+random    ltt eps=0.05 consist v2 W/T/L=83/15/15 cert=98 geo=2.06 cost=0.287 viol=44/565 meandis=2.15% dAcc=-0.74pp
+random    ltt eps=0.05 consist v3 W/T/L=94/4/15 cert=110 geo=2.11 cost=0.183 viol=74/565 meandis=2.71% dAcc=-0.96pp
+random    crc eps=0.005 margin  v2 W/T/L=45/68/0 cert=45 geo=1.51 cost=0.755 viol=67/565 meandis=0.15% dAcc=-0.07pp
+random    crc eps=0.005 margin  v3 W/T/L=80/32/1 cert=82 geo=1.93 cost=0.591 viol=131/565 meandis=0.26% dAcc=-0.07pp
+random    crc eps=0.005 consist v2 W/T/L=45/68/0 cert=45 geo=1.56 cost=0.739 viol=61/565 meandis=0.15% dAcc=-0.05pp
+random    crc eps=0.005 consist v3 W/T/L=80/31/2 cert=82 geo=2.05 cost=0.559 viol=131/565 meandis=0.28% dAcc=-0.05pp
+random    crc eps=0.01 margin  v2 W/T/L=74/38/1 cert=77 geo=1.82 cost=0.570 viol=111/565 meandis=0.49% dAcc=-0.20pp
+random    crc eps=0.01 margin  v3 W/T/L=96/14/3 cert=101 geo=2.39 cost=0.397 viol=176/565 meandis=0.73% dAcc=-0.28pp
+random    crc eps=0.01 consist v2 W/T/L=72/37/4 cert=77 geo=1.92 cost=0.541 viol=110/565 meandis=0.48% dAcc=-0.16pp
+random    crc eps=0.01 consist v3 W/T/L=95/13/5 cert=101 geo=2.67 cost=0.356 viol=177/565 meandis=0.73% dAcc=-0.18pp
+random    crc eps=0.02 margin  v2 W/T/L=91/20/2 cert=98 geo=2.38 cost=0.354 viol=128/565 meandis=1.29% dAcc=-0.54pp
+random    crc eps=0.02 margin  v3 W/T/L=98/13/2 cert=107 geo=2.55 cost=0.282 viol=158/565 meandis=1.53% dAcc=-0.63pp
+random    crc eps=0.02 consist v2 W/T/L=89/16/8 cert=98 geo=2.47 cost=0.330 viol=122/565 meandis=1.26% dAcc=-0.40pp
+random    crc eps=0.02 consist v3 W/T/L=98/7/8 cert=107 geo=2.70 cost=0.255 viol=157/565 meandis=1.45% dAcc=-0.42pp
+random    crc eps=0.05 margin  v2 W/T/L=90/19/4 cert=108 geo=2.13 cost=0.198 viol=132/565 meandis=3.42% dAcc=-1.46pp
+random    crc eps=0.05 margin  v3 W/T/L=97/13/3 cert=113 geo=2.28 cost=0.144 viol=161/565 meandis=3.74% dAcc=-1.65pp
+random    crc eps=0.05 consist v2 W/T/L=88/5/20 cert=108 geo=2.08 cost=0.184 viol=134/565 meandis=3.29% dAcc=-1.16pp
+random    crc eps=0.05 consist v3 W/T/L=93/0/20 cert=113 geo=2.21 cost=0.131 viol=151/565 meandis=3.53% dAcc=-1.25pp
+
+== runs with cross-fitting only (n_cal < N_MAX), strat_imp margin ==
+ltt eps=0.005: runs=415 certified=156 viol=27/156 meandis(certified)=0.20%
+ltt eps=0.01: runs=415 certified=225 viol=28/225 meandis(certified)=0.39%
+ltt eps=0.02: runs=415 certified=313 viol=35/313 meandis(certified)=0.84%
+ltt eps=0.05: runs=415 certified=398 viol=46/398 meandis(certified)=2.48%
+crc eps=0.005: runs=415 certified=249 viol=67/249 meandis(certified)=0.29%
+crc eps=0.01: runs=415 certified=348 viol=87/348 meandis(certified)=0.60%
+crc eps=0.02: runs=415 certified=385 viol=108/385 meandis(certified)=1.37%
+crc eps=0.05: runs=415 certified=415 viol=114/415 meandis(certified)=3.36%

@@ -1,0 +1,107 @@
+Runs 536/565; datasets 111/113; complete across requested seeds: 94
+both costs are modeled operation proxies, not measured speedups; full_transform_cost models full transform plus heads
+cost/fullmask=relative operations; risk=macro test disagreement; dAcc=percentage points
+
+ltt_0.005
+  small_minirocket        cost 0.9709 fullmask 0.9709 risk 0.010% dAcc +0.001 cert 128 cheaper 22
+  ridge_prefix            cost 0.9793 fullmask 0.9998 risk 0.005% dAcc -0.001 cert 128 cheaper 13
+  detach_minirocket       cost 0.9514 fullmask 0.9989 risk 0.019% dAcc -0.002 cert 128 cheaper 48
+  pocket_minirocket       cost 0.9549 fullmask 0.9990 risk 0.018% dAcc -0.002 cert 128 cheaper 44
+  strat_imp_static        cost 0.9616 fullmask 0.9994 risk 0.015% dAcc -0.004 cert 128 cheaper 32
+  strat_imp_adaptive      cost 0.8345 fullmask 0.9984 risk 0.058% dAcc -0.013 cert 128 cheaper 126
+  paired adaptive vs small_minirocket: W/T/L 17/77/0; ratio 1.221737210145569; p=1.52587890625e-05
+  paired adaptive vs ridge_prefix: W/T/L 16/77/1; ratio 1.2289234390979327; p=3.0517578125e-05
+  paired adaptive vs detach_minirocket: W/T/L 16/77/1; ratio 1.178780693976434; p=7.62939453125e-05
+  paired adaptive vs pocket_minirocket: W/T/L 16/77/1; ratio 1.1928475013128923; p=4.57763671875e-05
+  paired adaptive vs strat_imp_static: W/T/L 17/77/0; ratio 1.20049686077662; p=1.52587890625e-05
+
+ltt_0.01
+  small_minirocket        cost 0.9336 fullmask 0.9336 risk 0.042% dAcc -0.012 cert 184 cheaper 53
+  ridge_prefix            cost 0.9676 fullmask 0.9996 risk 0.016% dAcc -0.009 cert 184 cheaper 23
+  detach_minirocket       cost 0.8966 fullmask 0.9975 risk 0.063% dAcc -0.006 cert 184 cheaper 93
+  pocket_minirocket       cost 0.8998 fullmask 0.9975 risk 0.070% dAcc -0.005 cert 184 cheaper 95
+  strat_imp_static        cost 0.9080 fullmask 0.9984 risk 0.058% dAcc -0.011 cert 184 cheaper 66
+  strat_imp_adaptive      cost 0.7536 fullmask 0.9969 risk 0.181% dAcc -0.040 cert 184 cheaper 181
+  paired adaptive vs small_minirocket: W/T/L 25/68/1; ratio 1.3880319768328; p=5.960464477539063e-08
+  paired adaptive vs ridge_prefix: W/T/L 25/68/1; ratio 1.4459970422282094; p=5.960464477539063e-08
+  paired adaptive vs detach_minirocket: W/T/L 25/68/1; ratio 1.3127718749082369; p=1.4901161193847656e-07
+  paired adaptive vs pocket_minirocket: W/T/L 25/68/1; ratio 1.3304366823889768; p=8.940696716308594e-08
+  paired adaptive vs strat_imp_static: W/T/L 24/69/1; ratio 1.305296121428418; p=1.7881393432617188e-07
+
+ltt_0.02
+  small_minirocket        cost 0.8265 fullmask 0.8265 risk 0.192% dAcc -0.071 cert 334 cheaper 136
+  ridge_prefix            cost 0.9041 fullmask 0.9982 risk 0.107% dAcc -0.059 cert 334 cheaper 72
+  detach_minirocket       cost 0.7657 fullmask 0.9935 risk 0.270% dAcc -0.034 cert 334 cheaper 199
+  pocket_minirocket       cost 0.7662 fullmask 0.9935 risk 0.271% dAcc -0.032 cert 334 cheaper 195
+  strat_imp_static        cost 0.7718 fullmask 0.9948 risk 0.261% dAcc -0.030 cert 334 cheaper 169
+  strat_imp_adaptive      cost 0.5628 fullmask 0.9930 risk 0.542% dAcc -0.139 cert 334 cheaper 323
+  paired adaptive vs small_minirocket: W/T/L 53/38/3; ratio 1.856216082108303; p=1.8818831721203061e-10
+  paired adaptive vs ridge_prefix: W/T/L 54/38/2; ratio 2.176090628533378; p=9.893602234325464e-11
+  paired adaptive vs detach_minirocket: W/T/L 55/38/1; ratio 1.6880070046342484; p=1.3661003951738773e-10
+  paired adaptive vs pocket_minirocket: W/T/L 55/38/1; ratio 1.6916462833699442; p=1.2271181135184272e-10
+  paired adaptive vs strat_imp_static: W/T/L 52/42/0; ratio 1.6082488477381471; p=3.503864964208263e-10
+
+ltt_0.05
+  small_minirocket        cost 0.6372 fullmask 0.6372 risk 1.062% dAcc -0.364 cert 464 cheaper 264
+  ridge_prefix            cost 0.7566 fullmask 0.9940 risk 0.757% dAcc -0.356 cert 464 cheaper 185
+  detach_minirocket       cost 0.5307 fullmask 0.9871 risk 1.147% dAcc -0.210 cert 464 cheaper 356
+  pocket_minirocket       cost 0.5331 fullmask 0.9866 risk 1.245% dAcc -0.248 cert 464 cheaper 354
+  strat_imp_static        cost 0.5214 fullmask 0.9879 risk 1.277% dAcc -0.236 cert 464 cheaper 342
+  strat_imp_adaptive      cost 0.3036 fullmask 0.9861 risk 2.055% dAcc -0.632 cert 464 cheaper 460
+  paired adaptive vs small_minirocket: W/T/L 78/12/4; ratio 2.644919634148831; p=5.911414257955243e-15
+  paired adaptive vs ridge_prefix: W/T/L 72/12/10; ratio 3.2883956488119614; p=4.0057235000182423e-14
+  paired adaptive vs detach_minirocket: W/T/L 79/12/3; ratio 2.1260688722131578; p=1.1818031128852551e-14
+  paired adaptive vs pocket_minirocket: W/T/L 79/12/3; ratio 2.1612513198732985; p=1.0220725456794757e-14
+  paired adaptive vs strat_imp_static: W/T/L 71/23/0; ratio 1.9492867731477004; p=2.429760002086979e-13
+
+crc_0.005
+  small_minirocket        cost 0.9489 fullmask 0.9489 risk 0.026% dAcc -0.005 cert 199 cheaper 44
+  ridge_prefix            cost 0.9738 fullmask 0.9997 risk 0.008% dAcc -0.004 cert 199 cheaper 18
+  detach_minirocket       cost 0.9119 fullmask 0.9978 risk 0.044% dAcc -0.004 cert 199 cheaper 83
+  pocket_minirocket       cost 0.9191 fullmask 0.9979 risk 0.043% dAcc -0.003 cert 199 cheaper 83
+  strat_imp_static        cost 0.9305 fullmask 0.9988 risk 0.036% dAcc -0.005 cert 199 cheaper 55
+  strat_imp_adaptive      cost 0.7506 fullmask 0.9975 risk 0.156% dAcc -0.037 cert 199 cheaper 195
+  paired adaptive vs small_minirocket: W/T/L 29/65/0; ratio 1.4050460919062753; p=3.725290298461914e-09
+  paired adaptive vs ridge_prefix: W/T/L 28/65/1; ratio 1.4596207123760478; p=7.450580596923828e-09
+  paired adaptive vs detach_minirocket: W/T/L 28/65/1; ratio 1.3191459015532; p=1.862645149230957e-08
+  paired adaptive vs pocket_minirocket: W/T/L 28/65/1; ratio 1.35150148676902; p=7.450580596923828e-09
+  paired adaptive vs strat_imp_static: W/T/L 28/65/1; ratio 1.361871661325532; p=1.1175870895385742e-08
+
+crc_0.01
+  small_minirocket        cost 0.8647 fullmask 0.8647 risk 0.110% dAcc -0.033 cert 359 cheaper 120
+  ridge_prefix            cost 0.9206 fullmask 0.9987 risk 0.065% dAcc -0.037 cert 359 cheaper 60
+  detach_minirocket       cost 0.7987 fullmask 0.9946 risk 0.177% dAcc -0.026 cert 359 cheaper 180
+  pocket_minirocket       cost 0.8005 fullmask 0.9945 risk 0.181% dAcc -0.018 cert 359 cheaper 186
+  strat_imp_static        cost 0.8072 fullmask 0.9958 risk 0.153% dAcc -0.009 cert 359 cheaper 153
+  strat_imp_adaptive      cost 0.5572 fullmask 0.9940 risk 0.445% dAcc -0.105 cert 359 cheaper 341
+  paired adaptive vs small_minirocket: W/T/L 58/33/3; ratio 1.9836763910525494; p=2.7008111139948213e-11
+  paired adaptive vs ridge_prefix: W/T/L 59/33/2; ratio 2.2034580675789894; p=1.4244121665398984e-11
+  paired adaptive vs detach_minirocket: W/T/L 60/33/1; ratio 1.7817717857644697; p=1.823659046423198e-11
+  paired adaptive vs pocket_minirocket: W/T/L 60/33/1; ratio 1.8111921227129522; p=1.227403216350005e-11
+  paired adaptive vs strat_imp_static: W/T/L 58/36/0; ratio 1.7629957058864891; p=3.5060510731588664e-11
+
+crc_0.02
+  small_minirocket        cost 0.7374 fullmask 0.7374 risk 0.366% dAcc -0.114 cert 464 cheaper 210
+  ridge_prefix            cost 0.8290 fullmask 0.9963 risk 0.264% dAcc -0.113 cert 464 cheaper 133
+  detach_minirocket       cost 0.6278 fullmask 0.9896 risk 0.544% dAcc -0.067 cert 464 cheaper 311
+  pocket_minirocket       cost 0.6258 fullmask 0.9891 risk 0.579% dAcc -0.081 cert 464 cheaper 314
+  strat_imp_static        cost 0.6239 fullmask 0.9909 risk 0.564% dAcc -0.079 cert 464 cheaper 286
+  strat_imp_adaptive      cost 0.3490 fullmask 0.9884 risk 1.162% dAcc -0.319 cert 464 cheaper 458
+  paired adaptive vs small_minirocket: W/T/L 79/12/3; ratio 2.900014375568334; p=4.742412409396339e-15
+  paired adaptive vs ridge_prefix: W/T/L 76/12/6; ratio 3.3965312947254707; p=8.520141538994923e-15
+  paired adaptive vs detach_minirocket: W/T/L 80/12/2; ratio 2.277660498153708; p=1.4163440090739469e-14
+  paired adaptive vs pocket_minirocket: W/T/L 80/12/2; ratio 2.3313673376177286; p=9.164065748831319e-15
+  paired adaptive vs strat_imp_static: W/T/L 76/18/0; ratio 2.180983989681029; p=3.6060528034893936e-14
+
+crc_0.05
+  small_minirocket        cost 0.5443 fullmask 0.5443 risk 1.716% dAcc -0.344 cert 511 cheaper 376
+  ridge_prefix            cost 0.6778 fullmask 0.9921 risk 1.312% dAcc -0.472 cert 511 cheaper 256
+  detach_minirocket       cost 0.4159 fullmask 0.9831 risk 1.856% dAcc -0.255 cert 511 cheaper 444
+  pocket_minirocket       cost 0.4193 fullmask 0.9833 risk 1.969% dAcc -0.337 cert 511 cheaper 444
+  strat_imp_static        cost 0.3915 fullmask 0.9848 risk 2.079% dAcc -0.372 cert 511 cheaper 442
+  strat_imp_adaptive      cost 0.2006 fullmask 0.9827 risk 3.164% dAcc -1.010 cert 511 cheaper 509
+  paired adaptive vs small_minirocket: W/T/L 85/5/4; ratio 3.0391684475090917; p=1.0842048374064851e-15
+  paired adaptive vs ridge_prefix: W/T/L 80/5/9; ratio 3.8845101563211006; p=2.399316012629298e-15
+  paired adaptive vs detach_minirocket: W/T/L 85/5/4; ratio 2.2508040510268845; p=1.1058970972503071e-14
+  paired adaptive vs pocket_minirocket: W/T/L 85/5/4; ratio 2.2956852190479613; p=1.3682192030978512e-15
+  paired adaptive vs strat_imp_static: W/T/L 70/21/3; ratio 1.860779749325467; p=2.4411775211326306e-12

@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-11-02",
+  "detach_rocket": {
+    "repository": "https://github.com/gon-uri/detach_rocket",
+    "commit": "26749ba88c9c7644f4be7d081eef46a86406d8d3",
+    "paper": "https://doi.org/10.1007/s10618-024-01062-7",
+    "local_core": "third_party/detach_rocket/detach_rocket/sfd.py",
+    "sha256": "e2c16c854b1de4fbfd2ed52a5f48c6182298a155fafa9194bc9bfd56cef7fa13",
+    "verification": "Existing local SFD file is byte-identical to the pinned upstream file.",
+    "scope": "MiniRocket SFD adaptation; CPU feature masking is not a measured pruned-transform speedup."
+  },
+  "pocket": {
+    "repository": "https://github.com/ShaowuChen/POCKET",
+    "commit": "510a530d527aa6abfe4caae91a6ea7867e5b348a",
+    "paper": "https://arxiv.org/abs/2309.08499",
+    "local_core": "third_party/pocket/MiniROCKET/PROCKET_pruner.py",
+    "sha256": "c40f41ab2e0e6ce28ca455ad07177d955439082295056b0ec7de749c87512274",
+    "verification": "Downloaded the MiniROCKET directory and README from the pinned upstream commit.",
+    "scope": "Official MiniRocket pruning equations with an implicit linear solve and a common fit-only tuning protocol; not a reproduction of published scores."
+  }
+}

@@ -1,0 +1,1697 @@
+[
+  {
+    "dataset": "ACSF1",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 100,
+    "n_cal": 50,
+    "n_test": 50,
+    "length": 1460,
+    "classes": 10
+  },
+  {
+    "dataset": "Adiac",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 390,
+    "n_cal": 195,
+    "n_test": 196,
+    "length": 176,
+    "classes": 37
+  },
+  {
+    "dataset": "ArrowHead",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 36,
+    "n_cal": 87,
+    "n_test": 88,
+    "length": 251,
+    "classes": 3
+  },
+  {
+    "dataset": "BME",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 30,
+    "n_cal": 75,
+    "n_test": 75,
+    "length": 128,
+    "classes": 3
+  },
+  {
+    "dataset": "Beef",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 30,
+    "n_cal": 15,
+    "n_test": 15,
+    "length": 470,
+    "classes": 5
+  },
+  {
+    "dataset": "BeetleFly",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 10,
+    "n_test": 10,
+    "length": 512,
+    "classes": 2
+  },
+  {
+    "dataset": "BirdChicken",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 10,
+    "n_test": 10,
+    "length": 512,
+    "classes": 2
+  },
+  {
+    "dataset": "CBF",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 30,
+    "n_cal": 450,
+    "n_test": 450,
+    "length": 128,
+    "classes": 3
+  },
+  {
+    "dataset": "Car",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 60,
+    "n_cal": 30,
+    "n_test": 30,
+    "length": 577,
+    "classes": 4
+  },
+  {
+    "dataset": "Chinatown",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 171,
+    "n_test": 172,
+    "length": 24,
+    "classes": 2
+  },
+  {
+    "dataset": "ChlorineConcentration",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 467,
+    "n_cal": 1920,
+    "n_test": 1920,
+    "length": 166,
+    "classes": 3
+  },
+  {
+    "dataset": "CinCECGTorso",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 40,
+    "n_cal": 690,
+    "n_test": 690,
+    "length": 1639,
+    "classes": 4
+  },
+  {
+    "dataset": "Coffee",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 28,
+    "n_cal": 14,
+    "n_test": 14,
+    "length": 286,
+    "classes": 2
+  },
+  {
+    "dataset": "Computers",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 250,
+    "n_cal": 125,
+    "n_test": 125,
+    "length": 720,
+    "classes": 2
+  },
+  {
+    "dataset": "CricketX",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 390,
+    "n_cal": 195,
+    "n_test": 195,
+    "length": 300,
+    "classes": 12
+  },
+  {
+    "dataset": "CricketY",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 390,
+    "n_cal": 195,
+    "n_test": 195,
+    "length": 300,
+    "classes": 12
+  },
+  {
+    "dataset": "CricketZ",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 390,
+    "n_cal": 195,
+    "n_test": 195,
+    "length": 300,
+    "classes": 12
+  },
+  {
+    "dataset": "Crop",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 7200,
+    "n_cal": 8400,
+    "n_test": 8400,
+    "length": 46,
+    "classes": 24
+  },
+  {
+    "dataset": "DiatomSizeReduction",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 16,
+    "n_cal": 153,
+    "n_test": 153,
+    "length": 345,
+    "classes": 4
+  },
+  {
+    "dataset": "DistalPhalanxOutlineAgeGroup",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 400,
+    "n_cal": 69,
+    "n_test": 70,
+    "length": 80,
+    "classes": 3
+  },
+  {
+    "dataset": "DistalPhalanxOutlineCorrect",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 600,
+    "n_cal": 138,
+    "n_test": 138,
+    "length": 80,
+    "classes": 2
+  },
+  {
+    "dataset": "DistalPhalanxTW",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 400,
+    "n_cal": 69,
+    "n_test": 70,
+    "length": 80,
+    "classes": 6
+  },
+  {
+    "dataset": "ECG200",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 100,
+    "n_cal": 50,
+    "n_test": 50,
+    "length": 96,
+    "classes": 2
+  },
+  {
+    "dataset": "ECG5000",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 500,
+    "n_cal": 2250,
+    "n_test": 2250,
+    "length": 140,
+    "classes": 5
+  },
+  {
+    "dataset": "ECGFiveDays",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 23,
+    "n_cal": 430,
+    "n_test": 431,
+    "length": 136,
+    "classes": 2
+  },
+  {
+    "dataset": "EOGHorizontalSignal",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 362,
+    "n_cal": 181,
+    "n_test": 181,
+    "length": 1250,
+    "classes": 12
+  },
+  {
+    "dataset": "EOGVerticalSignal",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 362,
+    "n_cal": 181,
+    "n_test": 181,
+    "length": 1250,
+    "classes": 12
+  },
+  {
+    "dataset": "Earthquakes",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 322,
+    "n_cal": 69,
+    "n_test": 70,
+    "length": 512,
+    "classes": 2
+  },
+  {
+    "dataset": "ElectricDevices",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 8926,
+    "n_cal": 3855,
+    "n_test": 3856,
+    "length": 96,
+    "classes": 7
+  },
+  {
+    "dataset": "EthanolLevel",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 504,
+    "n_cal": 250,
+    "n_test": 250,
+    "length": 1751,
+    "classes": 4
+  },
+  {
+    "dataset": "FaceAll",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 560,
+    "n_cal": 845,
+    "n_test": 845,
+    "length": 131,
+    "classes": 14
+  },
+  {
+    "dataset": "FaceFour",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 24,
+    "n_cal": 44,
+    "n_test": 44,
+    "length": 350,
+    "classes": 4
+  },
+  {
+    "dataset": "FacesUCR",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 200,
+    "n_cal": 1025,
+    "n_test": 1025,
+    "length": 131,
+    "classes": 14
+  },
+  {
+    "dataset": "FiftyWords",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 450,
+    "n_cal": 227,
+    "n_test": 228,
+    "length": 270,
+    "classes": 50
+  },
+  {
+    "dataset": "Fish",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 175,
+    "n_cal": 87,
+    "n_test": 88,
+    "length": 463,
+    "classes": 7
+  },
+  {
+    "dataset": "FordA",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 3601,
+    "n_cal": 660,
+    "n_test": 660,
+    "length": 500,
+    "classes": 2
+  },
+  {
+    "dataset": "FordB",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 3636,
+    "n_cal": 405,
+    "n_test": 405,
+    "length": 500,
+    "classes": 2
+  },
+  {
+    "dataset": "FreezerRegularTrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 150,
+    "n_cal": 1425,
+    "n_test": 1425,
+    "length": 301,
+    "classes": 2
+  },
+  {
+    "dataset": "FreezerSmallTrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 28,
+    "n_cal": 1425,
+    "n_test": 1425,
+    "length": 301,
+    "classes": 2
+  },
+  {
+    "dataset": "Fungi",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 18,
+    "n_cal": 93,
+    "n_test": 93,
+    "length": 201,
+    "classes": 18
+  },
+  {
+    "dataset": "GunPoint",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 50,
+    "n_cal": 75,
+    "n_test": 75,
+    "length": 150,
+    "classes": 2
+  },
+  {
+    "dataset": "GunPointAgeSpan",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 135,
+    "n_cal": 158,
+    "n_test": 158,
+    "length": 150,
+    "classes": 2
+  },
+  {
+    "dataset": "GunPointMaleVersusFemale",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 135,
+    "n_cal": 158,
+    "n_test": 158,
+    "length": 150,
+    "classes": 2
+  },
+  {
+    "dataset": "GunPointOldVersusYoung",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 136,
+    "n_cal": 157,
+    "n_test": 158,
+    "length": 150,
+    "classes": 2
+  },
+  {
+    "dataset": "Ham",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 109,
+    "n_cal": 52,
+    "n_test": 53,
+    "length": 431,
+    "classes": 2
+  },
+  {
+    "dataset": "HandOutlines",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1000,
+    "n_cal": 185,
+    "n_test": 185,
+    "length": 2709,
+    "classes": 2
+  },
+  {
+    "dataset": "Haptics",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 155,
+    "n_cal": 154,
+    "n_test": 154,
+    "length": 1092,
+    "classes": 5
+  },
+  {
+    "dataset": "Herring",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 64,
+    "n_cal": 32,
+    "n_test": 32,
+    "length": 512,
+    "classes": 2
+  },
+  {
+    "dataset": "HouseTwenty",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 40,
+    "n_cal": 59,
+    "n_test": 60,
+    "length": 2000,
+    "classes": 2
+  },
+  {
+    "dataset": "InlineSkate",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 100,
+    "n_cal": 275,
+    "n_test": 275,
+    "length": 1882,
+    "classes": 7
+  },
+  {
+    "dataset": "InsectEPGRegularTrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 62,
+    "n_cal": 124,
+    "n_test": 125,
+    "length": 601,
+    "classes": 3
+  },
+  {
+    "dataset": "InsectEPGSmallTrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 17,
+    "n_cal": 124,
+    "n_test": 125,
+    "length": 601,
+    "classes": 3
+  },
+  {
+    "dataset": "InsectWingbeatSound",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 220,
+    "n_cal": 990,
+    "n_test": 990,
+    "length": 256,
+    "classes": 11
+  },
+  {
+    "dataset": "ItalyPowerDemand",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 67,
+    "n_cal": 514,
+    "n_test": 515,
+    "length": 24,
+    "classes": 2
+  },
+  {
+    "dataset": "LargeKitchenAppliances",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 375,
+    "n_cal": 187,
+    "n_test": 188,
+    "length": 720,
+    "classes": 3
+  },
+  {
+    "dataset": "Lightning2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 60,
+    "n_cal": 30,
+    "n_test": 31,
+    "length": 637,
+    "classes": 2
+  },
+  {
+    "dataset": "Lightning7",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 70,
+    "n_cal": 36,
+    "n_test": 37,
+    "length": 319,
+    "classes": 7
+  },
+  {
+    "dataset": "Mallat",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 55,
+    "n_cal": 1172,
+    "n_test": 1173,
+    "length": 1024,
+    "classes": 8
+  },
+  {
+    "dataset": "Meat",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 60,
+    "n_cal": 30,
+    "n_test": 30,
+    "length": 448,
+    "classes": 3
+  },
+  {
+    "dataset": "MedicalImages",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 381,
+    "n_cal": 380,
+    "n_test": 380,
+    "length": 99,
+    "classes": 10
+  },
+  {
+    "dataset": "MiddlePhalanxOutlineAgeGroup",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 400,
+    "n_cal": 77,
+    "n_test": 77,
+    "length": 80,
+    "classes": 3
+  },
+  {
+    "dataset": "MiddlePhalanxOutlineCorrect",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 600,
+    "n_cal": 145,
+    "n_test": 146,
+    "length": 80,
+    "classes": 2
+  },
+  {
+    "dataset": "MiddlePhalanxTW",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 399,
+    "n_cal": 77,
+    "n_test": 77,
+    "length": 80,
+    "classes": 6
+  },
+  {
+    "dataset": "MixedShapesRegularTrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 500,
+    "n_cal": 1212,
+    "n_test": 1213,
+    "length": 1024,
+    "classes": 5
+  },
+  {
+    "dataset": "MixedShapesSmallTrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 100,
+    "n_cal": 1212,
+    "n_test": 1213,
+    "length": 1024,
+    "classes": 5
+  },
+  {
+    "dataset": "MoteStrain",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 626,
+    "n_test": 626,
+    "length": 84,
+    "classes": 2
+  },
+  {
+    "dataset": "NonInvasiveFetalECGThorax1",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1800,
+    "n_cal": 982,
+    "n_test": 983,
+    "length": 750,
+    "classes": 42
+  },
+  {
+    "dataset": "NonInvasiveFetalECGThorax2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1800,
+    "n_cal": 982,
+    "n_test": 983,
+    "length": 750,
+    "classes": 42
+  },
+  {
+    "dataset": "OSULeaf",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 200,
+    "n_cal": 121,
+    "n_test": 121,
+    "length": 427,
+    "classes": 6
+  },
+  {
+    "dataset": "OliveOil",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 30,
+    "n_cal": 15,
+    "n_test": 15,
+    "length": 570,
+    "classes": 4
+  },
+  {
+    "dataset": "PhalangesOutlinesCorrect",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1800,
+    "n_cal": 429,
+    "n_test": 429,
+    "length": 80,
+    "classes": 2
+  },
+  {
+    "dataset": "Phoneme",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 214,
+    "n_cal": 948,
+    "n_test": 948,
+    "length": 1024,
+    "classes": 39
+  },
+  {
+    "dataset": "PigAirwayPressure",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 104,
+    "n_cal": 104,
+    "n_test": 104,
+    "length": 2000,
+    "classes": 52
+  },
+  {
+    "dataset": "PigArtPressure",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 104,
+    "n_cal": 104,
+    "n_test": 104,
+    "length": 2000,
+    "classes": 52
+  },
+  {
+    "dataset": "PigCVP",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 104,
+    "n_cal": 104,
+    "n_test": 104,
+    "length": 2000,
+    "classes": 52
+  },
+  {
+    "dataset": "Plane",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 105,
+    "n_cal": 52,
+    "n_test": 53,
+    "length": 144,
+    "classes": 7
+  },
+  {
+    "dataset": "PowerCons",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 180,
+    "n_cal": 90,
+    "n_test": 90,
+    "length": 144,
+    "classes": 2
+  },
+  {
+    "dataset": "ProximalPhalanxOutlineAgeGroup",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 400,
+    "n_cal": 102,
+    "n_test": 103,
+    "length": 80,
+    "classes": 3
+  },
+  {
+    "dataset": "ProximalPhalanxOutlineCorrect",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 600,
+    "n_cal": 145,
+    "n_test": 146,
+    "length": 80,
+    "classes": 2
+  },
+  {
+    "dataset": "ProximalPhalanxTW",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 400,
+    "n_cal": 102,
+    "n_test": 103,
+    "length": 80,
+    "classes": 6
+  },
+  {
+    "dataset": "RefrigerationDevices",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 375,
+    "n_cal": 187,
+    "n_test": 188,
+    "length": 720,
+    "classes": 3
+  },
+  {
+    "dataset": "Rock",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 25,
+    "n_test": 25,
+    "length": 2844,
+    "classes": 4
+  },
+  {
+    "dataset": "ScreenType",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 375,
+    "n_cal": 187,
+    "n_test": 188,
+    "length": 720,
+    "classes": 3
+  },
+  {
+    "dataset": "SemgHandGenderCh2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 300,
+    "n_cal": 300,
+    "n_test": 300,
+    "length": 1500,
+    "classes": 2
+  },
+  {
+    "dataset": "SemgHandMovementCh2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 450,
+    "n_cal": 225,
+    "n_test": 225,
+    "length": 1500,
+    "classes": 6
+  },
+  {
+    "dataset": "SemgHandSubjectCh2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 450,
+    "n_cal": 225,
+    "n_test": 225,
+    "length": 1500,
+    "classes": 5
+  },
+  {
+    "dataset": "ShapeletSim",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 90,
+    "n_test": 90,
+    "length": 500,
+    "classes": 2
+  },
+  {
+    "dataset": "ShapesAll",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 600,
+    "n_cal": 300,
+    "n_test": 300,
+    "length": 512,
+    "classes": 60
+  },
+  {
+    "dataset": "SmallKitchenAppliances",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 375,
+    "n_cal": 187,
+    "n_test": 188,
+    "length": 720,
+    "classes": 3
+  },
+  {
+    "dataset": "SmoothSubspace",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 150,
+    "n_cal": 75,
+    "n_test": 75,
+    "length": 15,
+    "classes": 3
+  },
+  {
+    "dataset": "SonyAIBORobotSurface1",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 20,
+    "n_cal": 300,
+    "n_test": 301,
+    "length": 70,
+    "classes": 2
+  },
+  {
+    "dataset": "SonyAIBORobotSurface2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 27,
+    "n_cal": 476,
+    "n_test": 477,
+    "length": 65,
+    "classes": 2
+  },
+  {
+    "dataset": "StarLightCurves",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1000,
+    "n_cal": 4118,
+    "n_test": 4118,
+    "length": 1024,
+    "classes": 3
+  },
+  {
+    "dataset": "Strawberry",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 613,
+    "n_cal": 185,
+    "n_test": 185,
+    "length": 235,
+    "classes": 2
+  },
+  {
+    "dataset": "SwedishLeaf",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 500,
+    "n_cal": 312,
+    "n_test": 313,
+    "length": 128,
+    "classes": 15
+  },
+  {
+    "dataset": "Symbols",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 25,
+    "n_cal": 497,
+    "n_test": 498,
+    "length": 398,
+    "classes": 6
+  },
+  {
+    "dataset": "SyntheticControl",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 300,
+    "n_cal": 150,
+    "n_test": 150,
+    "length": 60,
+    "classes": 6
+  },
+  {
+    "dataset": "ToeSegmentation1",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 40,
+    "n_cal": 114,
+    "n_test": 114,
+    "length": 277,
+    "classes": 2
+  },
+  {
+    "dataset": "ToeSegmentation2",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 36,
+    "n_cal": 65,
+    "n_test": 65,
+    "length": 343,
+    "classes": 2
+  },
+  {
+    "dataset": "Trace",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 100,
+    "n_cal": 50,
+    "n_test": 50,
+    "length": 275,
+    "classes": 4
+  },
+  {
+    "dataset": "TwoLeadECG",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 23,
+    "n_cal": 569,
+    "n_test": 570,
+    "length": 82,
+    "classes": 2
+  },
+  {
+    "dataset": "TwoPatterns",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1000,
+    "n_cal": 2000,
+    "n_test": 2000,
+    "length": 128,
+    "classes": 4
+  },
+  {
+    "dataset": "UMD",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 36,
+    "n_cal": 72,
+    "n_test": 72,
+    "length": 150,
+    "classes": 3
+  },
+  {
+    "dataset": "UWaveGestureLibraryAll",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 896,
+    "n_cal": 1791,
+    "n_test": 1791,
+    "length": 945,
+    "classes": 8
+  },
+  {
+    "dataset": "UWaveGestureLibraryX",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 896,
+    "n_cal": 1791,
+    "n_test": 1791,
+    "length": 315,
+    "classes": 8
+  },
+  {
+    "dataset": "UWaveGestureLibraryY",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 896,
+    "n_cal": 1791,
+    "n_test": 1791,
+    "length": 315,
+    "classes": 8
+  },
+  {
+    "dataset": "UWaveGestureLibraryZ",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 896,
+    "n_cal": 1791,
+    "n_test": 1791,
+    "length": 315,
+    "classes": 8
+  },
+  {
+    "dataset": "Wafer",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 1000,
+    "n_cal": 3082,
+    "n_test": 3082,
+    "length": 152,
+    "classes": 2
+  },
+  {
+    "dataset": "Wine",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 57,
+    "n_cal": 27,
+    "n_test": 27,
+    "length": 234,
+    "classes": 2
+  },
+  {
+    "dataset": "WordSynonyms",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 267,
+    "n_cal": 319,
+    "n_test": 319,
+    "length": 270,
+    "classes": 25
+  },
+  {
+    "dataset": "Worms",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 181,
+    "n_cal": 38,
+    "n_test": 39,
+    "length": 900,
+    "classes": 5
+  },
+  {
+    "dataset": "WormsTwoClass",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 181,
+    "n_cal": 38,
+    "n_test": 39,
+    "length": 900,
+    "classes": 2
+  },
+  {
+    "dataset": "Yoga",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_fit": 300,
+    "n_cal": 1500,
+    "n_test": 1500,
+    "length": 426,
+    "classes": 2
+  }
+]

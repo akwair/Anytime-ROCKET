@@ -1,0 +1,15 @@
+{
+  "datasets": 113,
+  "runs": 565,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "original_v2_metric_comparisons": 27120,
+  "maximum_absolute_difference": 1.1102230246251565e-16,
+  "reference_status": "all exact_v2_arrays_verified",
+  "protocol_hash": "9861750cd468cc39624174cdeeef46512cb61b2c632cef6fc38dced65124a802"
+}

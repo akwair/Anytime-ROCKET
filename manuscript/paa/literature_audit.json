@@ -1,0 +1,89 @@
+{
+  "checked_on": "2026-11-02",
+  "workflow": "Targeted source verification and reference management, not an exhaustive systematic review",
+  "records": [
+    {
+      "key": "rocket",
+      "identifier": "10.1007/s10618-020-00701-z",
+      "url": "https://doi.org/10.1007/s10618-020-00701-z",
+      "verification": "Crossref bibliographic metadata and abstract; background only"
+    },
+    {
+      "key": "minirocket",
+      "identifier": "10.1145/3447548.3467231",
+      "url": "https://doi.org/10.1145/3447548.3467231",
+      "verification": "Crossref metadata plus ACM publisher title and abstract; local implementation inspected"
+    },
+    {
+      "key": "detach",
+      "identifier": "10.1007/s10618-024-01062-7",
+      "url": "https://link.springer.com/article/10.1007/s10618-024-01062-7",
+      "verification": "Crossref metadata and publisher method passages; pinned official code/protocol audited in baseline stage"
+    },
+    {
+      "key": "pocket",
+      "identifier": "10.1016/j.knosys.2024.112253",
+      "url": "https://arxiv.org/abs/2309.08499",
+      "verification": "Crossref metadata and author abstract; pinned official code/protocol audited in baseline stage"
+    },
+    {
+      "key": "calm",
+      "identifier": "arXiv:2207.07061",
+      "url": "https://arxiv.org/abs/2207.07061",
+      "verification": "Author bibliographic record and abstract; used for high-level positioning"
+    },
+    {
+      "key": "fastsafe",
+      "identifier": "arXiv:2405.20915",
+      "url": "https://arxiv.org/abs/2405.20915",
+      "verification": "Author record, abstract and OpenReview introduction; direct predecessor explicitly credited"
+    },
+    {
+      "key": "ltt",
+      "identifier": "10.1214/24-AOAS1998",
+      "url": "https://doi.org/10.1214/24-AOAS1998",
+      "verification": "Crossref publication metadata and author-manuscript abstract/intro; fixed-sequence implementation and argument inspected locally"
+    },
+    {
+      "key": "crc",
+      "identifier": "ICLR2024:33XGfHLtZg",
+      "url": "https://openreview.net/pdf?id=33XGfHLtZg",
+      "verification": "Official conference publication confirmed; monotone bounded-loss theorem applied to fixed policy envelope"
+    },
+    {
+      "key": "cvcrc",
+      "identifier": "arXiv:2401.11974",
+      "url": "https://arxiv.org/abs/2401.11974",
+      "verification": "Author record and abstract; no transfer of its theorem to the pooled heuristic"
+    },
+    {
+      "key": "ucr",
+      "identifier": "arXiv:1810.07758",
+      "url": "https://arxiv.org/abs/1810.07758",
+      "verification": "Author record and abstract; incorrect trial TPAMI DOI was rejected and is not cited"
+    },
+    {
+      "key": "dib2026",
+      "identifier": "10.1016/j.knosys.2026.116702",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0950705126014280",
+      "verification": "Crossref metadata and publisher abstract; full-text mechanism comparison pending"
+    },
+    {
+      "key": "carc2026",
+      "identifier": "10.1109/ACCESS.2026.3735066",
+      "url": "https://doi.org/10.1109/ACCESS.2026.3735066",
+      "verification": "Crossref bibliographic metadata only; no abstract or full text obtained; substantive comparison pending"
+    },
+    {
+      "key": "selection2026",
+      "identifier": "arXiv:2610.20773",
+      "url": "https://arxiv.org/abs/2610.20773",
+      "verification": "Author record and abstract; prediction-set coverage target distinguished from single-label fidelity"
+    }
+  ],
+  "limitations": [
+    "IEEE Access and KBS 2026 full-text overlap audit remains incomplete.",
+    "Some background citations use verified arXiv records rather than final publisher versions.",
+    "No claim of being the first risk-controlled early-exit method is made."
+  ]
+}

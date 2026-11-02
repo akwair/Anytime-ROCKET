@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-02",
+  "scope": "Conceptual audit of the four-family split-calibrated baseline protocol",
+  "verdict": "Defensible with the recorded conditions; not a review of empirical conclusions",
+  "conditions": [
+    "Candidate construction and static candidate order use fit data only. Adaptive threshold order is prespecified, not selected using observed test costs.",
+    "LTT/CRC guarantees apply separately to each family and setting; choosing a winning family after calibration requires additional control.",
+    "CRC uses the per-instance running maximum of disagreement losses and an identical zero-loss full fallback.",
+    "Pruned-transform costs are shared structural proxies charging touched dilations, touched units, retained PPVs, and evaluated heads.",
+    "POCKET preserves centered column-L2 normalization, final positive-shrinkage support and 50 iterations.",
+    "SFD preserves every 5-percent elimination/refit step, fixed alpha and maximum absolute class coefficient, without reentry."
+  ],
+  "caveats": [
+    "POCKET three-fold tuning at 32-percent retention and shared k are declared adaptations, not fully retuned published POCKET at each budget.",
+    "Merged UCR resplits do not permit direct comparison to published official-split benchmark scores.",
+    "Existing benchmark-guided method design makes this an exploratory paired comparison, not a fresh confirmatory evaluation.",
+    "Pooled OOF plus calibration has no proved risk bound in this project; empirical risk and failure to reject cannot validate a guarantee.",
+    "Modeled operations cannot establish measured runtime speedups. Full fallback is always safe even when no non-full candidate passes."
+  ],
+  "theorem_source": "https://openreview.net/pdf?id=33XGfHLtZg"
+}

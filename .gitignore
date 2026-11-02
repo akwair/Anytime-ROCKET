@@ -1,0 +1,58 @@
+# ---- Python environment ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# ---- Raw data and large compute artifacts ----
+data/
+tmp/
+results/server/
+results/v2/
+results/v3/
+results/baselines/
+results/pilot/
+results/latency/
+results/server_baselines_pilot/
+results/*.tgz
+results/*.tar.gz
+third_party/*.tgz
+
+# ---- Lab-server helper (internal host/user) ----
+tools/srv.py
+
+# ---- AI/editorial process notes (not part of the released artifact) ----
+HANDOFF.md
+notes/direction_selection.json
+notes/stage_baselines_plan.json
+manuscript/paa/adversarial/
+manuscript/paa/revisions/
+manuscript/paa/author_notes_zh.txt
+manuscript/paa/revision_notes_zh.txt
+manuscript/paa/revision_plan.txt
+manuscript/paa/revision_changes.json
+manuscript/paa/revise_prose.py
+
+# ---- LaTeX build intermediates ----
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+manuscript/paa/*.zip
+manuscript/paa/compile_revised_*.txt
+manuscript/paa/bibtex_*.txt
+manuscript/paa/latex_pass*.log
+manuscript/paa/latex_r3*.log
+manuscript/paa/l[123].log
+manuscript/paa/b.log
+manuscript/paa/build_r3_final.log
+manuscript/paa/evidence_build*.log
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

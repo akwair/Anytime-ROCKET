@@ -1,0 +1,108 @@
+[build-system]
+requires = ["setuptools>=68.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+# ---------------------------------------------------------------------------
+# Project metadata (PEP 621)
+# ---------------------------------------------------------------------------
+[project]
+name = "detach_rocket"
+version = "0.2.1"
+description = "Sequential Feature Detachment for Random Convolutional Kernel models."
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.11"
+authors = [
+    { name = "Gonzalo Uribarri" },
+    { name = "Federico Barone" },
+]
+keywords = ["time-series", "classification", "feature-selection", "rocket", "machine-learning"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# -- Runtime dependencies ---------------------------------------------------
+dependencies = [
+    # NumPy 2 is required by aeon.  Capped below 2.4 because aeon 1.5 still
+    # calls np.trapz, which NumPy 2.4 removed (aeon's own <2.5 cap is too
+    # permissive for its code); lift the cap when a fixed aeon ships.
+    "numpy>=2.0,<2.4",
+
+    # Match aeon's supported scikit-learn range explicitly, instead of relying
+    # on pip to discover this transitive constraint during resolution.  The
+    # floor is this package's own (higher than aeon's 1.6).
+    "scikit-learn>=1.7.2,<1.9",
+
+    # ROCKET-family transformers and the UCR/UEA dataset loaders.  aeon also
+    # pulls in numba (which compiles the kernels) and scipy, so neither needs
+    # a pin here.
+    "aeon>=1.5,<2",
+]
+
+# -- Optional dependency groups ---------------------------------------------
+[project.optional-dependencies]
+# DetachEnsemble with PyTorch backend (PytorchMiniRocketMultivariate).
+# torch 2.3 is the first release that tolerates NumPy 2, which the base
+# dependencies require; asking for it makes pip fail loudly on platforms that
+# only ship older wheels instead of installing a broken torch/numpy pair.
+torch = ["torch>=2.3"]
+# DetachEnsemble with CUDA backend (CudaMiniRocketMultivariate)
+cuda = ["cupy-cuda12x>=13.0"]
+# Jupyter notebook examples
+examples = ["matplotlib>=3.10.8", "ipykernel>=7.2.0"]
+# Development / testing
+dev = [
+    "pytest>=9.0.2",
+    "ruff>=0.15.4",
+]
+# Install everything
+all = [
+    "detach_rocket[torch,cuda,examples,dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/gon-uri/detach_rocket"
+Repository = "https://github.com/gon-uri/detach_rocket"
+Issues = "https://github.com/gon-uri/detach_rocket/issues"
+
+# ---------------------------------------------------------------------------
+# Tool configuration
+# ---------------------------------------------------------------------------
+
+[tool.setuptools.packages.find]
+include = ["detach_rocket*"]
+exclude = ["tests*", "examples*", "logo*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::UserWarning:sklearn",
+    "ignore::scipy.linalg.LinAlgWarning",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+# Lint/format the library and tests only; notebooks are user-facing documents.
+extend-exclude = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]

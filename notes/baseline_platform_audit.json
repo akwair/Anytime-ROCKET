@@ -1,0 +1,17 @@
+{
+  "windows_protocol_hash": "8b5e3bf0cfeb6441673a44ba812d55332fee2bf53db74e7b18a8fb92b7306404",
+  "server_protocol_hash": "9861750cd468cc39624174cdeeef46512cb61b2c632cef6fc38dced65124a802",
+  "cause": "NumPy logspace platform last-bit rounding in ridge_alphas; source hashes and every other setting match exactly",
+  "differing_alphas": [
+    {
+      "windows": 0.1,
+      "linux": 0.09999999999999999,
+      "ulps": 1.0
+    },
+    {
+      "windows": 0.46415888336127775,
+      "linux": 0.4641588833612777,
+      "ulps": 1.0
+    }
+  ]
+}

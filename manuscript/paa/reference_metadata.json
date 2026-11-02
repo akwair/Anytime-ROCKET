@@ -1,0 +1,590 @@
+{
+  "10.1007/s10618-020-00701-z": {
+    "DOI": "10.1007/s10618-020-00701-z",
+    "title": [
+      "ROCKET: exceptionally fast and accurate time series classification using random convolutional kernels"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-6809-0482",
+        "authenticated-orcid": false,
+        "given": "Angus",
+        "family": "Dempster",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5334-3574",
+        "authenticated-orcid": false,
+        "given": "François",
+        "family": "Petitjean",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-9963-5169",
+        "authenticated-orcid": false,
+        "given": "Geoffrey I.",
+        "family": "Webb",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2020,
+          7,
+          13
+        ]
+      ]
+    },
+    "container-title": [
+      "Data Mining and Knowledge Discovery"
+    ],
+    "volume": "34",
+    "issue": "5",
+    "page": "1454-1495",
+    "article-number": null,
+    "abstract": null,
+    "URL": "https://doi.org/10.1007/s10618-020-00701-z"
+  },
+  "10.1145/3447548.3467231": {
+    "DOI": "10.1145/3447548.3467231",
+    "title": [
+      "MiniRocket"
+    ],
+    "author": [
+      {
+        "given": "Angus",
+        "family": "Dempster",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Monash University, Melbourne, VIC, Australia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Daniel F.",
+        "family": "Schmidt",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Monash University, Melbourne, VIC, Australia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Geoffrey I.",
+        "family": "Webb",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Monash University, Melbourne, VIC, Australia"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          8,
+          14
+        ]
+      ]
+    },
+    "container-title": [
+      "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining"
+    ],
+    "volume": null,
+    "issue": null,
+    "page": "248-257",
+    "article-number": null,
+    "abstract": null,
+    "URL": "https://doi.org/10.1145/3447548.3467231"
+  },
+  "10.1007/s10618-024-01062-7": {
+    "DOI": "10.1007/s10618-024-01062-7",
+    "title": [
+      "Detach-ROCKET: sequential feature selection for time series classification with random convolutional kernels"
+    ],
+    "author": [
+      {
+        "given": "Gonzalo",
+        "family": "Uribarri",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Federico",
+        "family": "Barone",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alessio",
+        "family": "Ansuini",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Erik",
+        "family": "Fransén",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          8,
+          20
+        ]
+      ]
+    },
+    "container-title": [
+      "Data Mining and Knowledge Discovery"
+    ],
+    "volume": "38",
+    "issue": "6",
+    "page": "3922-3947",
+    "article-number": null,
+    "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>\n                    Time Series Classification (TSC) is essential in fields like medicine, environmental science, and finance, enabling tasks such as disease diagnosis, anomaly detection, and stock price analysis. While machine learning models like Recurrent Neural Networks and InceptionTime are successful in numerous applications, they can face scalability issues due to computational requirements. Recently, ROCKET has emerged as an efficient alternative, achieving state-of-the-art performance and simplifying training by utilizing a large number of randomly generated features from the time series data. However, many of these features are redundant or non-informative, increasing computational load and compromising generalization. Here we introduce Sequential Feature Detachment (SFD) to identify and prune non-essential features in ROCKET-based models, such as ROCKET, MiniRocket, and MultiRocket. SFD estimates feature importance using model coefficients and can handle large feature sets without complex hyperparameter tuning. Testing on the UCR archive shows that SFD can produce models with better test accuracy using only 10% of the original features. We named these pruned models Detach-ROCKET. We also present an end-to-end procedure for determining an optimal balance between the number of features and model accuracy. On the largest binary UCR dataset, Detach-ROCKET improves test accuracy by 0.6% while reducing features by 98.9%. By enabling a significant reduction in model size without sacrificing accuracy, our methodology improves computational efficiency and contributes to model interpretability. We believe that Detach-ROCKET will be a valuable tool for researchers and practitioners working with time series data, who can find a user-friendly implementation of the model at\n                    <jats:ext-link xmlns:xlink=\"http://www.w3.org/1999/xlink\" ext-link-type=\"uri\" xlink:href=\"https://github.com/gon-uri/detach_rocket\">https://github.com/gon-uri/detach_rocket</jats:ext-link>\n                    .\n                  </jats:p>",
+    "URL": "https://doi.org/10.1007/s10618-024-01062-7"
+  },
+  "10.1214/24-AOAS1998": {
+    "DOI": "10.1214/24-aoas1998",
+    "title": [
+      "Learn then test: Calibrating predictive algorithms to achieve risk control"
+    ],
+    "author": [
+      {
+        "given": "Anastasios N.",
+        "family": "Angelopoulos",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Electrical Engineering and Computer Science, University of California, Berkeley"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stephen",
+        "family": "Bates",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Electrical Engineering and Computer Science, Massachusetts Institute of Technology"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Emmanuel J.",
+        "family": "Candès",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Statistics, Stanford University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Michael I.",
+        "family": "Jordan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Electrical Engineering and Computer Science, University of California, Berkeley"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lihua",
+        "family": "Lei",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Stanford Graduate School of Business"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          1
+        ]
+      ]
+    },
+    "container-title": [
+      "The Annals of Applied Statistics"
+    ],
+    "volume": "19",
+    "issue": "2",
+    "page": "1641-1662",
+    "article-number": null,
+    "abstract": "<jats:p>We introduce a framework for calibrating machine learning models to satisfy finite-sample statistical guarantees. Our calibration algorithms work with any model and (unknown) data-generating distribution and do not require retraining. The algorithms address, among other examples, false discovery rate control in multilabel classification, intersection-over-union control in instance segmentation, and simultaneous control of the type-1 outlier error and confidence set coverage in classification or regression. Our main insight is to reframe risk control as multiple hypothesis testing, enabling different mathematical arguments. We demonstrate our algorithms with detailed worked examples in computer vision and tabular medical data. The computer vision experiments demonstrate the utility of our approach in calibrating state-of-the-art predictive architectures that have been deployed widely, such as the detectron2 object detection system.</jats:p>",
+    "URL": "https://doi.org/10.1214/24-aoas1998"
+  },
+  "10.1109/ACCESS.2026.3735066": {
+    "DOI": "10.1109/access.2026.3735066",
+    "title": [
+      "Compute-Adaptive Risk Control: A Finite-Sample Calibration Layer for Early-Exit and Cascade Inference"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-6931-9592",
+        "authenticated-orcid": false,
+        "given": "Sooyoung",
+        "family": "Jang",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Hanbat National University",
+            "place": [
+              "Daejeon, Republic of Korea"
+            ],
+            "department": [
+              "Department of Computer Engineering"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Siyeon",
+        "family": "Park",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hanbat National University",
+            "place": [
+              "Daejeon, Republic of Korea"
+            ],
+            "department": [
+              "Department of Intelligence Media Engineering"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2561-1356",
+        "authenticated-orcid": false,
+        "given": "Sungpil",
+        "family": "Woo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hanbat National University",
+            "place": [
+              "Daejeon, Republic of Korea"
+            ],
+            "department": [
+              "Department of Computer Engineering"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7788-1921",
+        "authenticated-orcid": false,
+        "given": "Ahyun",
+        "family": "Lee",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Hanbat National University",
+            "place": [
+              "Daejeon, Republic of Korea"
+            ],
+            "department": [
+              "Department of Intelligence Media Engineering"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": [
+      "IEEE Access"
+    ],
+    "volume": "14",
+    "issue": null,
+    "page": "146857-146883",
+    "article-number": null,
+    "abstract": null,
+    "URL": "https://doi.org/10.1109/access.2026.3735066"
+  },
+  "10.1016/j.knosys.2026.116702": {
+    "DOI": "10.1016/j.knosys.2026.116702",
+    "title": [
+      "When to stop: Learned routing and risk control for early exit networks"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0003-1372-0851",
+        "authenticated-orcid": false,
+        "given": "Omar",
+        "family": "Dib",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          10
+        ]
+      ]
+    },
+    "container-title": [
+      "Knowledge-Based Systems"
+    ],
+    "volume": "351",
+    "issue": null,
+    "page": "116702",
+    "article-number": "116702",
+    "abstract": null,
+    "URL": "https://doi.org/10.1016/j.knosys.2026.116702"
+  },
+  "10.1016/j.knosys.2024.112253": {
+    "DOI": "10.1016/j.knosys.2024.112253",
+    "title": [
+      "POCKET: Pruning random convolution kernels for time series classification from a feature selection perspective"
+    ],
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0001-6119-3908",
+        "authenticated-orcid": false,
+        "given": "Shaowu",
+        "family": "Chen",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8658-7775",
+        "authenticated-orcid": false,
+        "given": "Weize",
+        "family": "Sun",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-2503-690X",
+        "authenticated-orcid": false,
+        "given": "Lei",
+        "family": "Huang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5448-7219",
+        "authenticated-orcid": false,
+        "given": "Xiao Peng",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7879-4328",
+        "authenticated-orcid": false,
+        "given": "Qingyuan",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-6139-1100",
+        "authenticated-orcid": false,
+        "given": "Deepu",
+        "family": "John",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          9
+        ]
+      ]
+    },
+    "container-title": [
+      "Knowledge-Based Systems"
+    ],
+    "volume": "300",
+    "issue": null,
+    "page": "112253",
+    "article-number": "112253",
+    "abstract": null,
+    "URL": "https://doi.org/10.1016/j.knosys.2024.112253"
+  }
+}

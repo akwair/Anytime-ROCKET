@@ -1,0 +1,38 @@
+113 datasets, 557 runs
+
+== n_cal >= 0: 113 datasets ==
+eps=0.005 importance margin  W/T/L=30/83/0 geomean static/adapt=1.27 mean adapt cost=0.861 viol=11/557 dAcc=-0.01pp
+eps=0.005 importance consist W/T/L=29/83/1 geomean static/adapt=1.31 mean adapt cost=0.844 viol=8/557 dAcc=-0.00pp
+eps=0.005 random     margin  W/T/L=29/83/1 geomean static/adapt=1.30 mean adapt cost=0.839 viol=11/557 dAcc=-0.03pp
+eps=0.005 random     consist W/T/L=28/83/2 geomean static/adapt=1.35 mean adapt cost=0.826 viol=13/557 dAcc=-0.02pp
+eps=0.01 importance margin  W/T/L=40/73/0 geomean static/adapt=1.37 mean adapt cost=0.790 viol=13/557 dAcc=-0.05pp
+eps=0.01 importance consist W/T/L=40/71/2 geomean static/adapt=1.45 mean adapt cost=0.766 viol=11/557 dAcc=-0.02pp
+eps=0.01 random     margin  W/T/L=42/71/0 geomean static/adapt=1.46 mean adapt cost=0.757 viol=17/557 dAcc=-0.08pp
+eps=0.01 random     consist W/T/L=40/72/1 geomean static/adapt=1.50 mean adapt cost=0.742 viol=21/557 dAcc=-0.06pp
+eps=0.02 importance margin  W/T/L=63/46/4 geomean static/adapt=1.61 mean adapt cost=0.606 viol=19/557 dAcc=-0.20pp
+eps=0.02 importance consist W/T/L=65/41/7 geomean static/adapt=1.75 mean adapt cost=0.576 viol=26/557 dAcc=-0.14pp
+eps=0.02 random     margin  W/T/L=66/46/1 geomean static/adapt=1.68 mean adapt cost=0.579 viol=30/557 dAcc=-0.26pp
+eps=0.02 random     consist W/T/L=65/41/7 geomean static/adapt=1.75 mean adapt cost=0.552 viol=27/557 dAcc=-0.19pp
+eps=0.05 importance margin  W/T/L=85/25/3 geomean static/adapt=1.86 mean adapt cost=0.349 viol=44/557 dAcc=-0.80pp
+eps=0.05 importance consist W/T/L=82/16/15 geomean static/adapt=1.88 mean adapt cost=0.329 viol=27/557 dAcc=-0.62pp
+eps=0.05 random     margin  W/T/L=83/26/4 geomean static/adapt=2.01 mean adapt cost=0.304 viol=42/557 dAcc=-0.92pp
+eps=0.05 random     consist W/T/L=83/15/15 geomean static/adapt=2.06 mean adapt cost=0.287 viol=44/557 dAcc=-0.71pp
+
+== n_cal >= 200: 45 datasets ==
+eps=0.005 importance margin  W/T/L=30/15/0 geomean static/adapt=1.81 mean adapt cost=0.651 viol=11/217 dAcc=-0.02pp
+eps=0.005 importance consist W/T/L=29/15/1 geomean static/adapt=1.98 mean adapt cost=0.608 viol=8/217 dAcc=-0.01pp
+eps=0.005 random     margin  W/T/L=29/15/1 geomean static/adapt=1.95 mean adapt cost=0.596 viol=11/217 dAcc=-0.08pp
+eps=0.005 random     consist W/T/L=28/15/2 geomean static/adapt=2.12 mean adapt cost=0.564 viol=13/217 dAcc=-0.06pp
+eps=0.01 importance margin  W/T/L=40/5/0 geomean static/adapt=2.22 mean adapt cost=0.472 viol=13/217 dAcc=-0.13pp
+eps=0.01 importance consist W/T/L=40/3/2 geomean static/adapt=2.55 mean adapt cost=0.412 viol=11/217 dAcc=-0.06pp
+eps=0.01 random     margin  W/T/L=42/3/0 geomean static/adapt=2.61 mean adapt cost=0.389 viol=17/217 dAcc=-0.20pp
+eps=0.01 random     consist W/T/L=40/4/1 geomean static/adapt=2.78 mean adapt cost=0.353 viol=21/217 dAcc=-0.16pp
+eps=0.02 importance margin  W/T/L=40/3/2 geomean static/adapt=2.33 mean adapt cost=0.343 viol=15/217 dAcc=-0.36pp
+eps=0.02 importance consist W/T/L=42/0/3 geomean static/adapt=2.69 mean adapt cost=0.296 viol=17/217 dAcc=-0.25pp
+eps=0.02 random     margin  W/T/L=42/3/0 geomean static/adapt=2.47 mean adapt cost=0.281 viol=22/217 dAcc=-0.50pp
+eps=0.02 random     consist W/T/L=41/0/4 geomean static/adapt=2.57 mean adapt cost=0.250 viol=21/217 dAcc=-0.37pp
+eps=0.05 importance margin  W/T/L=37/5/3 geomean static/adapt=1.79 mean adapt cost=0.220 viol=20/217 dAcc=-1.41pp
+eps=0.05 importance consist W/T/L=36/1/8 geomean static/adapt=1.91 mean adapt cost=0.195 viol=15/217 dAcc=-1.08pp
+eps=0.05 random     margin  W/T/L=36/7/2 geomean static/adapt=1.93 mean adapt cost=0.173 viol=18/217 dAcc=-1.54pp
+eps=0.05 random     consist W/T/L=37/0/8 geomean static/adapt=1.88 mean adapt cost=0.161 viol=19/217 dAcc=-1.23pp
+[exit 0]

@@ -1,0 +1,357 @@
+% Working manuscript for Pattern Analysis and Applications, 2026-11-02.
+% Tables are filled from frozen results by build_evidence.py.
+% Revised prose and figures; author-supplied declarations remain pending.
+\documentclass[pdflatex,sn-basic,Numbered]{sn-jnl}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{flafter}
+\newcommand{\todo}[1]{\par\smallskip\noindent\begin{minipage}{\linewidth}\color{red}[To complete: #1]\end{minipage}\par\smallskip}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\raggedbottom
+\setlength{\bibsep}{0.7em}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{14pt}
+\makeatother
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.80}
+\begin{document}
+
+\title[Anytime-ROCKET]{Anytime-ROCKET: label-free calibrated early exits for MiniRocket time series classification}
+\author{Author information to be supplied}
+\date{}
+
+\abstract{MiniRocket uses a fixed feature budget for every time series, although some inputs can be classified from a smaller representation. We develop Anytime-ROCKET to allocate feature computation to individual inputs. The method orders kernel--dilation units by dilation-stratified importance, bringing different temporal scales into early prefixes. Each prefix has a separately fitted ridge classifier, and computation stops when its prediction margin reaches a calibrated threshold. Calibration uses prefix disagreement with full-model predictions without additional class labels: Learn then Test (LTT) provides high-probability control, whereas conformal risk control (CRC) provides control in expectation. For CRC, a monotone upper envelope accommodates the nonmonotone disagreement losses. Experiments use 113 univariate UCR datasets, five random splits per dataset, a shared full-model reference, and four additional static baseline families. At a 1\% CRC target, mean modeled computation is 0.5569 relative to the full model, compared with 0.8001--0.9222 for the additional static baselines. Macro test disagreement is 0.447\%, with a mean accuracy decrease of 0.118 percentage points. LTT uses more computation and gives lower observed disagreement. Under a structural operation model, independently calibrated exits turn MiniRocket's computation--fidelity trade-off into an operating choice rather than a fixed budget.}
+
+\keywords{Time series classification, MiniRocket, Early exit, Risk control, Label-free calibration, Adaptive computation}
+\maketitle
+\begin{center}\small\textit{Revised manuscript for author review, 2 November 2026}\end{center}
+
+\section{Introduction}\label{sec:intro}
+Time series classifiers usually compute the same representation for every input. Some predictions may need only a small subset of those features; others require the full representation. ROCKET and MiniRocket make fixed-budget classification efficient by combining convolutional features with a linear classifier \cite{rocket,minirocket}. We ask whether MiniRocket can spend less computation on an individual input while staying within a prescribed agreement margin of its full-model prediction.
+
+Static feature selection reduces the representation used by all inputs. Detach-ROCKET and POCKET follow this approach for ROCKET-family classifiers \cite{detach,pocket}. Adaptive inference instead stops feature computation on a fully observed series when the features computed so far support a sufficiently stable prediction. It requires intermediate classifiers, an order in which to compute features, and a rule for replacing the full prediction with an intermediate one. A smaller feature set alone leaves these decisions open.
+
+Statistical calibration can control the consequences of early exits. Confident Adaptive Language Modeling and Fast yet Safe combine adaptive computation with calibrated performance constraints \cite{calm,fastsafe}. We build on this work for MiniRocket, whose computation is organized around shared convolutional responses rather than network depth. Several proportion-of-positive-values features reuse one kernel--dilation response. Intermediate linear heads also add work. An exit schedule must account for both feature reuse and head overhead.
+
+Anytime-ROCKET combines ordered kernel--dilation units, independently fitted prefix classifiers, and a common margin threshold calibrated against the full classifier. Its two primary variants apply Learn then Test (LTT) and conformal risk control (CRC) \cite{ltt,crc}. The available calibration sample size limits which exits these procedures can select. We compare adaptive inference with static prefixes, independently fitted smaller transforms, and pruning adaptations under matched splits, reference models, and disagreement targets. An ordering ablation examines how distributing early computation across dilation scales affects this trade-off.
+
+\section{Related work}\label{sec:related}
+\subsection{Convolutional features and static pruning}
+ROCKET transforms time series with random convolutional kernels and fits a linear classifier on the resulting features \cite{rocket}. MiniRocket restructures this transform into a faster, largely deterministic feature extractor \cite{minirocket}. We use MiniRocket throughout. Its kernel--dilation layout exposes shared computation and provides natural units for scheduling feature extraction.
+
+Detach-ROCKET removes features through sequential feature detachment (SFD), using classifier coefficients to select features for removal and refitting the reduced model \cite{detach}. POCKET selects a sparse representation through regularization, then refits a classifier on the retained features \cite{pocket}. We adapt both selectors to a shared MiniRocket reference and calibration protocol. The adaptations and tuning choices are specified in Section~\ref{sec:protocol}. Combining static pruning with adaptive exits remains a direction for future work.
+
+\subsection{Calibrated adaptive computation}
+CALM calibrates adaptive computation in language generation \cite{calm}. Fast yet Safe compares early-exit predictions with full-model outputs under expected-risk and high-probability constraints \cite{fastsafe}. The MiniRocket setting, however, raises implementation questions absent from language generation: shared convolutional responses, classifiers fitted on growing feature prefixes, and variation in series length.
+
+Dib \cite{dib2026} learns routing decisions under risk control in early-exit networks; Jang et al.~\cite{carc2026} add a finite-sample calibration layer to early-exit and cascade inference. A contemporaneous preprint considers selection-safe conformal prediction sets under adaptive depth \cite{selection2026}. Its target is coverage of the true label by a prediction set. Our target is agreement between two single-label predictions, so the resulting bound concerns fidelity to the full classifier rather than its absolute correctness.
+
+\subsection{Risk-control frameworks and data reuse}
+LTT formulates calibration as testing risk hypotheses, with family-wise error control supplied by the chosen testing procedure \cite{ltt}. CRC bounds the expected value of a bounded monotone loss through a finite-sample correction \cite{crc}. Prediction disagreement can rise and fall along the threshold sequence, so we apply CRC to an upper envelope of candidate losses; the envelope restores the monotone-loss condition by construction.
+
+Cross-Validation Conformal Risk Control provides guarantees for a specific construction that reuses training and calibration data \cite{cvcrc}. We also examine data reuse on small calibration sets. Our exploratory pooling procedure and its statistical limitations are reported separately in Appendix~\ref{app:crossfit}.
+
+\section{Problem formulation and method}\label{sec:method}
+\subsection{Prediction fidelity and assumptions}
+Let $x\in\mathbb{R}^{T}$ be a fully observed univariate series, $y$ its class label, and $f(x)$ the full MiniRocket classifier. The labeled fit set $D_{\mathrm{fit}}$ determines the transform, standardization, full classifier, feature-unit order, and intermediate heads. A disjoint set $D_{\mathrm{cal}}=\{x_i\}_{i=1}^{n}$ is used only for calibration. Its class labels are not supplied to the calibrator. We denote the exit policy with parameter $\lambda$ by $g_\lambda$ and define
+\begin{equation}
+ L_\lambda(x)=\ind\{g_\lambda(x)\ne f(x)\},\qquad
+ R(\lambda)=\E_X[L_\lambda(X)].\label{eq:risk}
+\end{equation}
+Both predictions in this loss are available without $y$. Model fitting uses class labels; exit calibration uses unlabeled inputs and their full-model predictions. Figure~\ref{fig:overview} shows how these stages connect to inference.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_overview.pdf}
+\caption{Anytime-ROCKET workflow. (a) Features sharing a kernel--dilation response form one computation unit. Units are ranked within dilation groups and interleaved by round-robin selection. (b) Labeled fit data determine the transform, order, standardization and separate prefix heads. Independent unlabeled inputs supply full-model disagreement losses for LTT or CRC threshold selection. (c) At inference, cumulative prefixes are evaluated until the margin reaches the selected threshold; otherwise computation continues to the full head. A selected infinite threshold routes directly to the full model. Blocks and prefix widths are schematic.}\label{fig:overview}
+\end{figure}
+
+Candidate policies are fixed before observing $D_{\mathrm{cal}}$. Conditional on the fitted model, binomial LTT assumes calibration observations are independent draws from the deployment population. CRC requires exchangeable calibration and future losses, together with its bounded monotone-loss conditions. Distribution shift, temporal dependence between series, or model selection using calibration performance can violate these assumptions.
+
+Prediction fidelity bounds the change in classification error relative to the full model. For any fixed pair of classifiers,
+\begin{equation}
+ \left|\Prob\{g_\lambda(X)\ne Y\}-\Prob\{f(X)\ne Y\}\right|
+ \le R(\lambda),\label{eq:accuracy}
+\end{equation}
+because the two error indicators can differ only when the predictions differ. This population-level bound leaves the full model's absolute error, class-conditional risk and individual-input risk unspecified.
+
+\subsection{Computation units and prefix heads}
+The MiniRocket transform returns $p$ features. We group features by kernel and dilation: a unit $u=(d,k)$ contains all bias-threshold features derived from that kernel--dilation response. Keeping a unit intact preserves opportunities to reuse the response across its features. Let $\pi$ be an ordering of units, and let $F_j$ be the feature indices belonging to the first $q_j$ units. Checkpoints approximate feature fractions $0.01,0.02,0.04,0.08,0.16,0.32,0.64,1.0$. A checkpoint ends at the first whole unit reaching its requested fraction; duplicate checkpoints are removed and the full model is included.
+
+Feature standardization is fitted on $D_{\mathrm{fit}}$, and each proper prefix receives a separately fitted ridge classifier. We use ten regularization values logarithmically spaced from $10^{-3}$ to $10^3$, with fit-only selection by \texttt{RidgeClassifierCV}. The final head is the shared full classifier. Separate fitting lets each prefix adjust to its available features instead of inheriting truncated full-model coefficients.
+
+The primary order is dilation-stratified importance. Given the full head's standardized-feature coefficients $w_{cf}$, we score each unit by
+\begin{equation}
+ I_u=\sum_{f\in u}\sum_c w_{cf}^{2}.\label{eq:importance}
+\end{equation}
+Units within each dilation are sorted by decreasing $I_u$; dilation groups are sorted by their total importance. Successive rounds take one unit from each group. This heuristic preserves the within-scale ranking while bringing different temporal scales into the early prefixes. The ablation compares it with unrestricted importance ordering, random permutation, and dilation-stratified random ordering.
+
+\subsection{Exit policy}
+At checkpoint $j$, let $s_j(x)$ be the score vector and $m_j(x)$ the difference between its largest and second-largest scores. A binary decision value $a$ is represented as $(-a,a)$, giving margin $2|a|$. The exit checkpoint is
+\begin{equation}
+ e_\lambda(x)=\min\bigl(\{j<K:m_j(x)\ge\lambda\}\cup\{K\}\bigr),
+ \qquad g_\lambda(x)=h_{e_\lambda(x)}(x).\label{eq:exit}
+\end{equation}
+The margins use ridge decision values. We select a common threshold from the fixed sequence $\infty,4.00,3.98,\ldots,0.00$, running from conservative to aggressive. An infinite threshold routes directly to the full model and bypasses intermediate heads. With a finite threshold, inputs reaching the last checkpoint also incur the cost of all preceding heads.
+
+A supplementary variant requires agreement with the preceding checkpoint as well as a sufficient margin, making the first checkpoint ineligible for exit. The main comparison fixes the margin-only rule before calibration. Choosing between these rules after calibration would require accounting for that additional selection.
+
+\subsection{Independent calibration with LTT}
+For candidate $j$ in the conservative-to-aggressive sequence, let $S_j=\sum_{i=1}^{n} L_j(x_i)$. We test whether its disagreement risk exceeds the target $\epsilon$ using the lower binomial tail
+\begin{equation}
+ p_j=\Prob\{\operatorname{Binomial}(n,\epsilon)\le S_j\}.
+\end{equation}
+Fixed-sequence testing proceeds while $p_j\le\delta$, stopping at the first failure. It returns the last passing candidate, or the known-safe full model if none passes. This procedure is an application of LTT \cite{ltt}. Conditional on the fit set and a pre-fixed candidate sequence, the probability of selecting a policy with $R>\epsilon$ is at most $\delta$. We use $\delta=0.1$ throughout.
+
+The true risks can occur in any order. Selecting an unsafe candidate requires rejecting the first true null in the fixed sequence, an event with probability at most $\delta$. This argument allows dependence among tests on the same examples. The guarantee applies to each fixed family and setting; selection across calibrated families requires a further adjustment.
+
+\subsection{Independent calibration with CRC}
+Disagreement can increase and decrease along the threshold sequence as inputs switch between intermediate heads. We therefore define the per-example upper envelope
+\begin{equation}
+ \widetilde L_j(x)=\max_{0\le r\le j}L_r(x),\qquad
+ \widehat{\widetilde R}_j=\frac{1}{n}\sum_{i=1}^{n}\widetilde L_j(x_i).
+\end{equation}
+The sequence starts with the full-model policy, so $L_0(x)=0$. The envelope is bounded by one, increases with aggressiveness, and dominates the deployed policy's loss. Applying CRC to this finite nested sequence yields the selection rule
+\begin{equation}
+ \widehat j=\max\left\{j:\frac{n\widehat{\widetilde R}_j+1}{n+1}\le\epsilon\right\}.\label{eq:crc}
+\end{equation}
+If this set is empty, the full classifier is used. Reversing the parameter order gives the usual nonincreasing-loss CRC formulation \cite{crc}. Under its assumptions, the selected envelope controls the original disagreement loss in expectation:
+\begin{equation}
+ \E_{D_{\mathrm{cal}},X}[L_{\widehat j}(X)]\le\epsilon.
+\end{equation}
+CRC averages over calibration samples and future observations, whereas LTT bounds the probability of selecting a policy whose population risk exceeds $\epsilon$. A particular CRC calibration sample can therefore yield $R>\epsilon$. The upper envelope also introduces conservatism: an earlier candidate's disagreement may block a later candidate whose own loss is smaller.
+
+\subsection{Small calibration sets and full-model fallback}
+Even zero observed disagreements cannot satisfy these selection rules at arbitrary sample sizes. The necessary zero-error sample sizes are
+\begin{equation}
+ n_{\mathrm{LTT}}\ge\left\lceil\frac{\log\delta}{\log(1-\epsilon)}\right\rceil,
+ \qquad n_{\mathrm{CRC}}\ge\left\lceil\frac{1}{\epsilon}-1\right\rceil.
+\end{equation}
+At $\epsilon=0.01$ and $\delta=0.1$, at least 230 examples are needed for LTT and 99 for CRC. Meeting these necessary sample sizes still leaves selection dependent on the observed losses. When data are insufficient, the method retains the full model, whose disagreement with itself is zero.
+
+\subsection{Structural cost accounting}\label{sec:cost}
+Retained-feature fractions omit work shared by features within a dilation or unit. We account for this reuse with a structural operation proxy. For feature set $F$, touched unit set $U(F)$, touched dilation set $D(F)$, and feature-specific effective response length $T_f^{\mathrm{eff}}$, the transform component is
+\begin{equation}
+ C_{\mathrm{tr}}(F)=2T+16T|D(F)|+3T|U(F)|+\sum_{f\in F}T_f^{\mathrm{eff}}.\label{eq:cost}
+\end{equation}
+This convention approximates padding, copying and proportion-of-positive-values arithmetic; memory allocation and indexing are excluded. The classifier/scaling term is $H(F)=|F|(c_{\mathrm{eff}}+1)$, where $c_{\mathrm{eff}}=1$ for binary classification and otherwise equals the fitted class count.
+
+A static prefix costs $C_{\mathrm{tr}}(F_j)+H(F_j)$. An adaptive prediction exiting at $j$ under a finite threshold costs $C_{\mathrm{tr}}(F_j)+\sum_{r\le j}H(F_r)$, including every visited head. We normalize by the full transform and its single head. Direct full-model fallback has cost one; finite-threshold overhead can raise cost above one, and such outcomes are retained. The primary proxy assumes selective feature execution. A second view charges the full transform before feature selection, matching the feature-masking implementation used for baseline evaluation. Both views estimate operations rather than CPU latency.
+
+\section{Experimental protocol}\label{sec:protocol}
+\subsection{Datasets, splits and preprocessing}
+We evaluated 113 univariate, equal-length UCR datasets without missing values \cite{ucr}. For each dataset, we merged the official train and test partitions and randomly permuted examples using seeds 0--4. The fit-set size equaled the official training-set size. Half of the remaining examples, rounded down, formed the calibration set, and the rest formed the test set. All methods within a run used identical examples and the same full-model anchor. These new partitions support paired comparisons within this study; published scores using the official UCR split follow a different evaluation protocol.
+
+We loaded the archive from the ChengsenWang UCR-2018 mirror and cached the arrays. The experiment driver applied no per-series normalization; MiniRocket features were standardized using fit-only statistics. MiniRocket requested 10,000 features, with the realized count following its multiple-of-84 layout, and at most 32 dilations per kernel. Full run manifests preserve the dataset names, split indices, transform parameters, source hashes and predictions. Twenty-six fit splits lacked at least one class present in the complete dataset. Predictions used the fitted class-label mapping, and held-out examples from absent classes remained ordinary errors rather than being excluded.
+
+\subsection{Comparators and calibration}
+The full MiniRocket model defines fidelity and relative cost one. Stratified static prefixes use the same ordered units and independently fitted heads as the adaptive method, selecting a single checkpoint for every test input. Four additional static families use nominal feature budgets of 1, 2, 4, 8, 16, 32 and 64\%, plus the shared full model:
+\begin{enumerate}
+ \item Small MiniRocket independently refits the transform at each requested feature count. It shares the random seed and uses at least 84 requested features; its full-budget candidate is the common anchor.
+ \item Natural prefixes retain features in the transform's original dilation--kernel--bias layout and refit ridge classifiers.
+ \item The SFD adaptation performs sequential 5\% removals, with feature importance given by the maximum absolute coefficient across classes. Throughout pruning, regularization is fixed at the value selected for the full classifier on the complete fit set. Removed features cannot reenter. At each budget we use the first pruning step at or below that budget and refit the common ridge classifier.
+ \item The POCKET adaptation retains the official MiniRocket pruning equations, centered column-$L_2$ normalization, final shrinkage support and 50 iterations. Six candidate regularization multipliers are tuned within the fit set at 32\% retention and reused across budgets. With at least two classes, tuning uses three stratified folds when the smallest class has at least three examples, and two folds when it has two. If a class has only one example or the fit set contains only one class, the regularization multiplier defaults to one without cross-validation. The common ridge classifier is then refitted on the selected features using the complete fit set.
+\end{enumerate}
+The shared tuning schedule, bounded SFD scan and common-head refits hold tuning effort constant across families; they do not reproduce the exhaustive, budget-specific tuning of the published pruning methods. The experiment records identify the pinned source commits and each adaptation.
+
+Within each static family, candidates are ordered from higher to lower modeled cost and calibrated separately by LTT or CRC. We omit non-full candidates costing at least as much as the full anchor. Feature construction, pruning and hyperparameter selection use fit data only; calibration uses disagreement, and test labels enter only the accuracy evaluation. We study $\epsilon\in\{0.005,0.01,0.02,0.05\}$, with each family, target and policy defining a separate calibration problem.
+
+\subsection{Reporting and integrity checks}
+We average each metric over five seeds within a dataset, then give the 113 dataset means equal weight. The reported metrics are modeled relative cost, test disagreement and accuracy change from the full model. Pooled disagreement instead weights test-instance appearances across runs, including observations reused by different seeds. Cost wins, ties and losses compare dataset means with an absolute tie tolerance of $10^{-12}$.
+
+All 565 baseline runs passed checks of saved-prediction shapes, class mappings, full-model anchors and source hashes. Recomputation of the static and adaptive metrics reproduced 27,120 saved values with a maximum absolute difference of $1.11\times10^{-16}$. Experiments used NumPy 1.26.4, SciPy 1.15.3, scikit-learn 1.3.2, aeon 0.6.0 and Numba 0.68.1, with one numerical thread per server worker. Dataset and method choices, including the preferred order, were fixed during exploratory evaluation.
+
+\section{Results}\label{sec:results}
+\subsection{Adaptive computation under a common disagreement target}
+At the 1\% CRC target, Anytime-ROCKET used 0.5569 of the full model's estimated operations, a reduction of 44.3\% (Table~\ref{tab:main}; Fig.~\ref{fig:main}). The four additional static families had mean costs of 0.8001--0.9222, and the stratified static comparator had cost 0.8121. Adaptive macro disagreement was 0.447\%, compared with 0.063--0.184\% for the additional static families. Adaptive inference spends more of the common fidelity budget on computation reduction, and its mean accuracy change was $-0.118$ percentage points---slightly larger in magnitude than the static comparators.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Comparison at $\epsilon=1\%$. Each metric first averages five seeds within a dataset, then weights all 113 datasets equally. Cost is a structural operation proxy relative to the shared full model; disagreement (Dis.) is in percent and accuracy change ($\Delta$Acc.) in percentage points. LTT uses $\delta=0.1$. The two pruning baselines are standardized MiniRocket adaptations.}\label{tab:main}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Method & CRC cost & Dis. & $\Delta$Acc. & LTT cost & Dis. & $\Delta$Acc. \\
+\midrule
+Small MiniRocket & 0.8667 & 0.108 & -0.033 & 0.9350 & 0.042 & -0.012 \\
+Natural prefix & 0.9222 & 0.063 & -0.036 & 0.9683 & 0.015 & -0.008 \\
+SFD adaptation & 0.8001 & 0.180 & -0.026 & 0.8955 & 0.070 & -0.006 \\
+POCKET adaptation & 0.8016 & 0.184 & -0.017 & 0.9018 & 0.067 & -0.005 \\
+Stratified static & 0.8121 & 0.145 & -0.010 & 0.9097 & 0.057 & -0.013 \\
+Anytime-ROCKET & 0.5569 & 0.447 & -0.118 & 0.7504 & 0.191 & -0.050 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_main.pdf}
+\caption{Comparison at a 1\% disagreement target. (a) Modeled relative cost, normalized to the full model. (b) Observed test disagreement. Each point averages five seeds within each dataset, then weights all 113 datasets equally. Filled circles show CRC; open squares show LTT with $\delta=0.1$. The vertical lines mark the full-model cost and the target disagreement. No uncertainty intervals are shown.}\label{fig:main}
+\end{figure}
+
+The cost reductions extended across datasets (Table~\ref{tab:paired}; Fig.~\ref{fig:paired}). Under CRC, adaptive inference cost less than the SFD and POCKET adaptations on 76 datasets, tied on 36, and cost more on one. Against stratified static prefixes, it cost less on 73 datasets and tied on 40. Many ties arose when both methods selected the full model.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Dataset-level modeled-cost comparisons at $\epsilon=1\%$. W/T/L counts datasets on which Anytime-ROCKET has lower/equal/higher mean cost than the comparator. Ties use absolute tolerance $10^{-12}$; each dataset contributes one five-seed mean.}\label{tab:paired}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrr}
+\toprule
+Comparator & CRC W/T/L & LTT W/T/L \\
+\midrule
+Small MiniRocket & 74/36/3 & 41/71/1 \\
+Natural prefix & 75/36/2 & 41/71/1 \\
+SFD adaptation & 76/36/1 & 41/71/1 \\
+POCKET adaptation & 76/36/1 & 41/71/1 \\
+Stratified static & 73/40/0 & 39/73/1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_paired.pdf}
+\caption{Dataset-level modeled cost at a 1\% CRC target. Each point is one dataset's mean over five seeds ($n=113$ datasets), comparing Anytime-ROCKET with (a) the SFD adaptation and (b) stratified static prefixes. Points below the diagonal favor adaptive inference. Counts report lower, equal and higher adaptive cost, using a tie tolerance of $10^{-12}$. Coincident points, including full-model fallbacks, overlap; all datasets are retained.}\label{fig:paired}
+\end{figure}
+
+LTT used more computation. At the same 1\% target and $\delta=0.1$, adaptive cost was 0.7504, macro disagreement was 0.191\%, and accuracy changed by $-0.050$ percentage points. The method cost less than each additional static family on 41 datasets, tied on 71, and cost more on one. This more conservative operating point reflects LTT's high-probability objective and its larger minimum calibration sample size.
+
+\subsection{Sensitivity to the disagreement budget}
+Larger disagreement targets reduced modeled computation (Table~\ref{tab:budget}; Fig.~\ref{fig:sensitivity}a). CRC adaptive cost fell from 0.7488 at a 0.5\% target to 0.2013 at 5\%, while mean accuracy change moved from $-0.043$ to $-1.049$ percentage points. LTT used more computation at every target. Tight targets left fewer selectable exits and more full-model fallbacks.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Risk-budget sensitivity of the stratified-importance margin policy. Cost is a structural operation proxy relative to the shared full model; accuracy change ($\Delta$Acc.) is in percentage points. Macro and pooled disagreement are percentages. Pooled values weight test-instance appearances across runs; repeated seeds reuse observations. The Active column counts runs selecting a finite exit threshold.}\label{tab:budget}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Rule & $\epsilon$ (\%) & Cost & Macro dis. & Pooled dis. & $\Delta$Acc. & Active \\
+\midrule
+LTT & 0.5 & 0.8314 & 0.063 & 0.235 & -0.019 & 150/565 \\
+LTT & 1 & 0.7504 & 0.191 & 0.550 & -0.050 & 209/565 \\
+LTT & 2 & 0.5613 & 0.552 & 1.168 & -0.159 & 353/565 \\
+LTT & 5 & 0.3039 & 2.076 & 3.110 & -0.666 & 487/565 \\
+CRC & 0.5 & 0.7488 & 0.161 & 0.378 & -0.043 & 224/565 \\
+CRC & 1 & 0.5569 & 0.447 & 0.788 & -0.118 & 375/565 \\
+CRC & 2 & 0.3508 & 1.165 & 1.535 & -0.338 & 485/565 \\
+CRC & 5 & 0.2013 & 3.172 & 3.649 & -1.049 & 539/565 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the 1\% CRC target, macro disagreement was 0.447\% and pooled disagreement was 0.788\%. Macro averaging gives every dataset equal weight; pooling gives larger test sets more influence. These are empirical test summaries, with finite-sample variation distinct from the population statements in Section~\ref{sec:method}.
+
+\subsection{Ordering effects}
+Ordering changed the cost of calibrated exits (Table~\ref{tab:order}; Fig.~\ref{fig:sensitivity}b). Across all 113 datasets, including full-model fallbacks, dilation-stratified importance gave a CRC cost of 0.5569. Costs were 0.6066 for unrestricted importance and 0.5704 for random ordering. The corresponding accuracy changes were $-0.118$, $-0.156$ and $-0.200$ percentage points. Under LTT, stratified importance and random ordering were closer, at 0.7504 and 0.7570.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Ordering ablation at $\epsilon=1\%$ with the margin rule. All 113 datasets and full-model fallbacks are included. Units match Table~\ref{tab:main}. Configuration selection followed exploratory benchmark evaluation.}\label{tab:order}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Order & CRC cost & Dis. & $\Delta$Acc. & LTT cost & Dis. & $\Delta$Acc. \\
+\midrule
+Importance & 0.6066 & 0.444 & -0.156 & 0.7897 & 0.178 & -0.059 \\
+Random & 0.5704 & 0.487 & -0.200 & 0.7570 & 0.188 & -0.086 \\
+Stratified random & 0.5613 & 0.482 & -0.199 & 0.7551 & 0.190 & -0.081 \\
+Stratified importance & 0.5569 & 0.447 & -0.118 & 0.7504 & 0.191 & -0.050 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig4_sensitivity.pdf}
+\caption{Risk-budget and ordering analyses. (a) Modeled cost of the stratified-importance margin policy at the four evaluated targets; lines connect evaluated operating points. (b) Modeled cost of all four orders at a 1\% target. Values average five seeds within a dataset and then the 113 datasets equally. LTT uses $\delta=0.1$. The ordering comparison includes full-model fallbacks and is exploratory. No uncertainty intervals are shown.}\label{fig:sensitivity}
+\end{figure}
+
+Round-robin ordering brings different temporal scales into early prefixes, even when large coefficients are concentrated in a few dilations. It also incurs setup costs by touching more dilation groups. The ablation records the combined effect of these choices; separating their contributions would require further experiments.
+
+\subsection{Cost under full-transform execution}
+Charging the full transform before feature selection largely removed the estimated savings (Table~\ref{tab:execution}). This alternate proxy matches the full-transform-and-mask route used to obtain baseline predictions. Realizing the selective proxy's savings requires an implementation that computes only the requested features. A separate batch-one early-exit kernel was tested in a pilot with an earlier ordering and configuration; final-configuration latency remains to be measured.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Two structural cost views at CRC $\epsilon=1\%$. Selective counts required transform work; full-transform charges all features before selection, as in the feature-masking implementation. Both include the applicable classifier costs.}\label{tab:execution}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrr}
+\toprule
+Method & Selective & Full-transform \\
+\midrule
+Small MiniRocket & 0.8667 & 0.8667 \\
+Natural prefix & 0.9222 & 0.9987 \\
+SFD adaptation & 0.8001 & 0.9944 \\
+POCKET adaptation & 0.8016 & 0.9944 \\
+Stratified static & 0.8121 & 0.9959 \\
+Anytime-ROCKET & 0.5569 & 0.9942 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}\label{sec:discussion}
+Anytime-ROCKET gives MiniRocket an input-dependent computation budget. Static feature sets must serve every input; adaptive exits use an early prefix for some inputs and reserve later computation for others. At a common disagreement target, this flexibility reduced modeled cost while allowing higher observed disagreement than the static comparators. The benefit is therefore a different computation--fidelity trade-off, with the preferred operating point depending on the application's tolerance for prediction changes.
+
+The method combines computation units, separately fitted prefix heads and existing risk-control tools within the MiniRocket transform. Full-model predictions provide the calibration targets, avoiding additional class annotation for this stage. Calibration still needs a representative independent input sample. Small datasets may offer too little evidence for a non-full policy at a strict target, and preserving the full classifier's predictions also preserves its systematic errors.
+
+Structural costs capture feature reuse and head overhead, but omit hardware effects such as memory traffic. Measuring the final selective-execution configuration against executable pruning baselines, together with its sensitivity to budget-specific tuning---particularly for POCKET, which remains unresolved under the standardized protocol used here---remains open.
+
+The empirical comparisons use repeated random partitions, yielding paired measurements rather than 565 independent datasets, and configuration choices reflect exploratory analysis. For deployment, the IID or exchangeability assumptions underlying calibration need separate assessment, especially under distribution shift or dependence between series.
+
+The empirical scope is univariate, equal-length MiniRocket classification. Extending the method to other transforms or multivariate series requires additional evaluation. It operates on fully observed series and returns at a calibrated stopping point. A hard deadline that interrupts computation before that point defines a different policy and would need its own analysis. Appendix~\ref{app:crossfit} examines a pooled data-reuse heuristic for small calibration sets.
+
+\section{Conclusion}
+Anytime-ROCKET organizes MiniRocket computation into kernel--dilation prefixes and calibrates when a prefix classifier can replace the full model. LTT and CRC provide high-probability and expected disagreement control, respectively; a monotone loss envelope accommodates CRC's requirements. Across 113 datasets and five seeds, independent calibration reduced modeled computation relative to the evaluated static families at a common 1\% target, with a small mean accuracy change.
+
+\section*{Statements and Declarations}
+\subsection*{Funding}
+\todo{Funding sources and grant numbers, or a no-funding statement, to be supplied by the authors.}
+\subsection*{Competing interests}
+\todo{Financial and non-financial competing-interest declaration to be confirmed by all authors.}
+\subsection*{Author contributions}
+\todo{Supply the author list, affiliations, corresponding-author email, and contributions.}
+\subsection*{Data availability}
+The experiments use datasets from the UCR Time Series Archive \cite{ucr}. The exact dataset list, split sizes and seeds are recorded in the accompanying experiment manifest. \todo{Insert the archive access link and a persistent, reviewer-accessible location for the split indices and derived results; confirm dataset redistribution terms.}
+\subsection*{Code availability}
+The implementation, frozen baseline protocol and result-verification scripts are retained with the study. \todo{Provide a public or anonymized reviewer-accessible repository and a versioned archive identifier. Code has not yet been publicly released as part of this draft.}
+\subsection*{Use of AI-assisted tools}
+AI-assisted tools supported coding, analysis and manuscript preparation. The authors are responsible for the final code, results, references and text. \todo{Tool names and scope of use to be documented by the authors after independent verification.}
+
+\appendix
+\section{Exploratory pooled cross-fitting}\label{app:crossfit}
+For datasets with fewer than 460 calibration examples, an exploratory procedure augments the calibration loss matrix with fold-derived losses from the fit set. Five-fold models refit the standardizer and ridge heads, recompute ordering within each fold, and keep the deployed checkpoint unit counts. MiniRocket transform parameters remain fitted on the complete fit set. Stratified folds are used when each class has at least five examples; otherwise ordinary shuffled folds are used. Each held-out fold supplies disagreement with its own fold-specific full head, and these losses are pooled with those of the deployed model on the independent calibration set. The deployed model itself remains unchanged.
+
+Pooling produced more finite thresholds and lower modeled cost (Table~\ref{tab:crossfit}). Its fold predictors differ from the deployed predictor, losses across folds are dependent, and transform parameters are shared. The split LTT and CRC arguments therefore do not apply to the pooled losses. This heuristic has no proved risk bound and differs from the construction analyzed by CV-CRC \cite{cvcrc}; the table reports its empirical operating points.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Exploratory pooled cross-fitting at $\epsilon=1\%$. Datasets with fewer than 460 calibration examples use fold-derived losses; other results remain unchanged. Cost is a structural operation proxy relative to the shared full model; accuracy change ($\Delta$Acc.) is in percentage points. The Active column counts runs selecting a finite exit threshold. The pooled procedure is defined in Appendix~\ref{app:crossfit}.}\label{tab:crossfit}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrr}
+\toprule
+Selector & Calibration & Cost & Dis. (\%) & $\Delta$Acc. & Active \\
+\midrule
+LTT & Independent split & 0.7504 & 0.191 & -0.050 & 209/565 \\
+LTT & Pooled cross-fit heuristic & 0.5677 & 0.310 & -0.066 & 375/565 \\
+CRC & Independent split & 0.5569 & 0.447 & -0.118 & 375/565 \\
+CRC & Pooled cross-fit heuristic & 0.3934 & 0.593 & -0.117 & 498/565 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Reproducibility}\label{app:repro}
+The frozen baseline protocol identifier is retained in the accompanying evidence manifest. It records official source commits for Detach-ROCKET and POCKET, package versions, the operation-cost convention, candidate budgets, fit-only tuning and independent calibration. The manuscript tables are generated from the frozen aggregate results and the per-run ordering/cross-fitting files. The dataset manifest lists the 113 included datasets with fit, calibration and test sizes and sequence lengths.
+
+% Author work item retained in author_notes_zh.txt and revision_changes.json.
+
+% Author work item retained in author_notes_zh.txt and revision_changes.json.
+
+\bibliography{references}
+\end{document}
